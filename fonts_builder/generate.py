@@ -43,6 +43,7 @@ WEIGHT_NUMBERS = dict(
 UNICODE_TEXT_DIR = ROOT_DIR_PATH.joinpath('./groups').resolve()
 LICENSE_TEMPLATE_DIR = ROOT_DIR_PATH.joinpath('./templates/licenses').resolve()
 METADATA_TEMPLATE_DIR = ROOT_DIR_PATH.joinpath('./templates/metadata').resolve()
+STYLESHEETS_TEMPLATE_DIR = ROOT_DIR_PATH.joinpath('./templates/stylesheets').resolve()
 
 
 def saveFonts(font_path_dict: dict, output_dir: Path, info):
@@ -161,17 +162,23 @@ def generateCss(css_family_name: str, font_path: Path, weight: str, info, fallba
                 unicode-range: {unicodes};
             }}
         """
-    return css
+
+    template_path = STYLESHEETS_TEMPLATE_DIR.joinpath(f"./{info['license']['id']}.css")
+    if not template_path.exists():
+        raise Exception(f"{info['license']['id']} is invalid license id.")
+    with open(template_path, 'r', encoding='utf-8') as file:
+        rendered = pystache.render(file.read(), dict(css=css_minify(css)))
+    return rendered
 
 
 def saveCss(output_dir: Path, css: str, basename: str):
-    minified = css_minify(css).encode('utf-8')
+    encoded = css.encode('utf-8')
     with open(output_dir.joinpath(f"./{basename}.min.css"), 'wb') as file:
-        file.write(minified)
+        file.write(encoded)
     with open(output_dir.joinpath(f"./{basename}.min.css.gz"), 'wb') as file:
-        file.write(zopfli.compress(minified))
+        file.write(zopfli.compress(encoded))
     with open(output_dir.joinpath(f"./{basename}.min.css.br"), 'wb') as file:
-        file.write(brotli.compress(minified, brotli.MODE_TEXT))
+        file.write(brotli.compress(encoded, brotli.MODE_TEXT))
 
 
 def generateMetadata(info):
