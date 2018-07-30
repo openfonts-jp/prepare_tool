@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fonttools = "*"
+brotli = "*"
+zopfli = "*"
+pyyaml = "*"
+requests = "*"
+pystache = "*"
+css-html-js-minify = "*"
+faker = "*"
+
+[dev-packages]
+pylint = "*"
+yapf = "*"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+start = "python -m fonts-builder"
