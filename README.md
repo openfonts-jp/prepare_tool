@@ -5,13 +5,13 @@
 ## Install
 
 ```
-docker pull openfontsjp/prepare-tool
+docker pull openfontsjp/prepare_tool
 ```
 
 もしくは
 
 ```
-whalebrew install openfontsjp/prepare-tool
+whalebrew install openfontsjp/prepare_tool
 ```
 
 ## Usage
