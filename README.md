@@ -28,7 +28,7 @@ prepare_tool --output-dir ./output ./files/any-font.json
 
 ### WOFF extended metadata
 
-ウェブフォントは， [WOFF extended metadata] にライセンスを埋め込みます
+このツールでは， [WOFF extended metadata] にライセンスを埋め込みます
 
 そのため，ライセンスを添付して頒布する必要のあるフォントでもウェブフォントとして利用できます
 
