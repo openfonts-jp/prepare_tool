@@ -21,4 +21,4 @@ yapf = "*"
 python_version = "3.7"
 
 [scripts]
-start = "python -m prepare_tools"
+start = "python -m prepare_tool"

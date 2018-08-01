@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='prepare_tools',
+    name='prepare_tool',
     version='0.0.1',
-    url='https://github.com/openfonts-jp/prepare_tools',
+    url='https://github.com/openfonts-jp/prepare_tool',
     license='MIT',
     author='3846masa',
     author_email='3846masahiro+git@gmail.com',
@@ -12,7 +12,7 @@ setup(
     packages=find_packages(),
     install_requires=open('requirements.txt').read().splitlines()[1:],
     entry_points={
-        'console_scripts': ['prepare_tools=prepare_tools:main'],
+        'console_scripts': ['prepare_tool=prepare_tool:main'],
     },
     package_data={
         '': ['groups/*', 'templates/**/*'],
