@@ -14,7 +14,7 @@ logger.setLevel(logging.ERROR)
 
 
 def main():
-    parser = argparse.ArgumentParser(prog='fonts-builder')
+    parser = argparse.ArgumentParser(prog='prepare_tool')
     parser.add_argument('yaml_file', metavar='yaml_file', type=Path, help='YAML file')
     parser.add_argument('--output-dir', dest='output_dir', type=Path, required=True, help='Output directory')
 
