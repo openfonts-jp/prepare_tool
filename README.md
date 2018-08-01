@@ -8,6 +8,12 @@
 docker pull openfonts-jp/prepare-tool
 ```
 
+もしくは
+
+```
+whalebrew install openfonts-jp/prepare-tool
+```
+
 ## Usage
 
 https://github.com/openfonts-jp/packages の JSON ファイルからパッケージを作ります

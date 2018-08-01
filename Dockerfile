@@ -12,4 +12,6 @@ RUN pipenv lock -r > requirements.txt && \
 
 WORKDIR /workdir
 
+LABEL io.whalebrew.name prepare_tool
+
 CMD ["bash"]
