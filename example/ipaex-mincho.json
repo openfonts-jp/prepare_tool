@@ -1,0 +1,27 @@
+{
+  "id": "ipaex-mincho",
+  "name": "IPAex明朝",
+  "version": "003.01",
+  "categories": [
+    "Mincho"
+  ],
+  "owners": [
+    "IPA 独立行政法人情報処理推進機構"
+  ],
+  "files": [
+    {
+      "from": "https://oscdl.ipa.go.jp/IPAexfont/ipaexm00301.zip",
+      "fonts": {
+        "normal": "ipaexm.ttf"
+      }
+    }
+  ],
+  "fallback": "IPAexMincho",
+  "license": {
+    "id": "IPA"
+  },
+  "copyrights": [
+    "Copyright(c) Information-technology Promotion Agency, Japan (IPA), 2003-2015."
+  ],
+  "website": "https://ipafont.ipa.go.jp/"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "mplus-1p",
+  "name": "M+ 1p",
+  "version": "063",
+  "categories": [
+    "Gothic"
+  ],
+  "owners": [
+    "M+ FONTS PROJECT"
+  ],
+  "files": [
+    {
+      "from": "https://osdn.net/frs/redir.php?f=mplus-fonts%2F62344%2Fmplus-TESTFLIGHT-063.tar.xz",
+      "fonts": {
+        "thin": null,
+        "extraLight": "mplus-1p-thin.ttf",
+        "light": "mplus-1p-light.ttf",
+        "normal": "mplus-1p-regular.ttf",
+        "medium": "mplus-1p-medium.ttf",
+        "semiBold": "mplus-1p-bold.ttf",
+        "bold": "mplus-1p-heavy.ttf",
+        "extraBold": "mplus-1p-black.ttf",
+        "black": null
+      }
+    }
+  ],
+  "license": {
+    "id": "Mplus"
+  },
+  "copyrights": [
+    "Copyright (C) 2002-2017 M+ FONTS PROJECT"
+  ],
+  "website": "https://mplus-fonts.osdn.jp/"
+}

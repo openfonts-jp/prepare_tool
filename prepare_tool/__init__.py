@@ -1,5 +1,5 @@
 import sys
-import yaml
+import json
 import logging
 import argparse
 from pathlib import Path
@@ -15,20 +15,20 @@ logger.setLevel(logging.ERROR)
 
 def cli():
     parser = argparse.ArgumentParser(prog='prepare_tool')
-    parser.add_argument('yaml_file', metavar='yaml_file', type=Path, help='YAML file')
+    parser.add_argument('json_file', metavar='json_file', type=Path, help='JSON file')
     parser.add_argument('--output-dir', dest='output_dir', type=Path, required=True, help='Output directory')
 
     args = vars(parser.parse_args())
     return main(**args)
 
 
-def main(yaml_file: Path, output_dir: Path):
-    if (yaml_file.is_file() != True):
-        logger.error(f"{yaml_file} is not found.")
+def main(json_file: Path, output_dir: Path):
+    if (json_file.is_file() != True):
+        logger.error(f"{json_file} is not found.")
         sys.exit(1)
 
-    with open(yaml_file, 'r', encoding='utf-8') as file:
-        font_info = yaml.load(file.read())
+    with open(json_file, 'r', encoding='utf-8') as file:
+        font_info = json.loads(file.read())
 
     with TemporaryDirectory(prefix='typeface-') as tmp_dir_pathstr:
         download_dir = Path(tmp_dir_pathstr)
