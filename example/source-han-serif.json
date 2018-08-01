@@ -1,8 +1,15 @@
 {
+  "$schema": "https://schemas.openfonts.jp/package/v01/schema.json",
   "id": "source-han-serif",
   "name": "源ノ明朝",
   "version": "1.001",
   "categories": ["Mincho"],
+  "characters": [
+    "Alphabets",
+    "Hiragana",
+    "Katakana",
+    "Kanji"
+  ],
   "owners": ["Adobe Systems Incorporated"],
   "files": [
     {

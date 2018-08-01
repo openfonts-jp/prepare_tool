@@ -1,9 +1,16 @@
 {
+  "$schema": "https://schemas.openfonts.jp/package/v01/schema.json",
   "id": "ipaex-mincho",
   "name": "IPAex明朝",
   "version": "003.01",
   "categories": [
     "Mincho"
+  ],
+  "characters": [
+    "Alphabets",
+    "Hiragana",
+    "Katakana",
+    "Kanji"
   ],
   "owners": [
     "IPA 独立行政法人情報処理推進機構"
