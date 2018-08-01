@@ -175,10 +175,6 @@ def saveCss(output_dir: Path, css: str, basename: str):
     encoded = css.encode('utf-8')
     with open(output_dir.joinpath(f"./{basename}.min.css"), 'wb') as file:
         file.write(encoded)
-    with open(output_dir.joinpath(f"./{basename}.min.css.gz"), 'wb') as file:
-        file.write(zopfli.compress(encoded))
-    with open(output_dir.joinpath(f"./{basename}.min.css.br"), 'wb') as file:
-        file.write(brotli.compress(encoded, brotli.MODE_TEXT))
 
 
 def generateMetadata(info):
