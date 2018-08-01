@@ -13,15 +13,16 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
 
-def main():
+def cli():
     parser = argparse.ArgumentParser(prog='prepare_tool')
     parser.add_argument('yaml_file', metavar='yaml_file', type=Path, help='YAML file')
     parser.add_argument('--output-dir', dest='output_dir', type=Path, required=True, help='Output directory')
 
     args = vars(parser.parse_args())
-    yaml_file = args['yaml_file']
-    output_dir = args['output_dir']
+    return main(**args)
 
+
+def main(yaml_file: Path, output_dir: Path):
     if (yaml_file.is_file() != True):
         logger.error(f"{yaml_file} is not found.")
         sys.exit(1)

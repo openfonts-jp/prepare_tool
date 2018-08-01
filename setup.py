@@ -12,7 +12,7 @@ setup(
     packages=find_packages(),
     install_requires=open('requirements.txt').read().splitlines()[1:],
     entry_points={
-        'console_scripts': ['prepare_tool=prepare_tool:main'],
+        'console_scripts': ['prepare_tool=prepare_tool:cli'],
     },
     package_data={
         '': ['groups/*', 'templates/**/*'],
