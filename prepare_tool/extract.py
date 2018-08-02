@@ -8,12 +8,11 @@ ZIP_FILENAME_UTF8_FLAG = 0x800
 def extractFile(file_path: Path, export_dir: Path):
     ext = file_path.suffixes
 
-    if len(ext) == 1:
-        if ext[-1] == ".zip":
-            return extractZip(file_path, export_dir)
-    elif len(ext) == 2:
+    if len(ext) == 2:
         if ext[-1] == ".xz" and ext[-2] == ".tar":
             return extractTarXz(file_path, export_dir)
+    if ext[-1] == ".zip":
+        return extractZip(file_path, export_dir)
 
     raise Exception(f"{file_path} is unsupported archive file.")
 
