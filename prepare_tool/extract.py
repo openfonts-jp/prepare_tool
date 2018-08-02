@@ -2,6 +2,8 @@ from tarfile import TarFile
 from zipfile import ZipFile
 from pathlib import Path
 
+ZIP_FILENAME_UTF8_FLAG = 0x800
+
 
 def extractFile(file_path: Path, export_dir: Path):
     ext = file_path.suffixes
@@ -18,7 +20,19 @@ def extractFile(file_path: Path, export_dir: Path):
 
 def extractZip(file_path: Path, export_dir: Path):
     with ZipFile(file_path, mode='r') as archive:
-        archive.extractall(export_dir)
+        for info in archive.filelist:
+            if info.is_dir():
+                continue
+
+            filename = info.filename
+            if info.flag_bits & ZIP_FILENAME_UTF8_FLAG == 0:
+                # Redecode as cp932 (Shift-JIS)
+                filename = filename.encode('cp437').decode('cp932')
+
+            export_filepath = export_dir.joinpath(filename)
+            export_filepath.parent.mkdir(parents=True, exist_ok=True)
+            with archive.open(info) as file, open(export_filepath, mode='wb') as export:
+                export.write(file.read())
     return
 
 
