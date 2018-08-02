@@ -1,6 +1,6 @@
 import sys
 import json
-import logging
+from logzero import logger
 import argparse
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -8,9 +8,6 @@ from tempfile import TemporaryDirectory
 from .download import downloadFile
 from .extract import extractFile
 from .generate import saveFonts, saveSubsettedFont, generateCss, saveCss
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.ERROR)
 
 
 def cli():

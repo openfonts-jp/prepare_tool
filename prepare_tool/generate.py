@@ -1,6 +1,7 @@
 import yaml
 import pystache
 import brotli
+from logzero import logger
 import zopfli.zlib as zopfli
 import zopfli.gzip as gzip
 from io import BytesIO
@@ -66,8 +67,10 @@ def saveFonts(font_path_dict: dict, output_dir: Path, info):
             with TarFile.open(mode='w', fileobj=stream) as archive:
                 for file_path in tmp_dir.glob('*'):
                     archive.add(file_path, arcname=file_path.name, recursive=False)
-            with open(output_dir.joinpath(f"./{info['id']}.tar.gz"), 'wb') as file:
+            archive_file = output_dir.joinpath(f"./{info['id']}.tar.gz")
+            with open(archive_file, 'wb') as file:
                 file.write(gzip.compress(stream.getvalue()))
+                logger.info(f"Saved {archive_file}")
 
 
 def saveSubsettedFont(font_path: Path, output_dir: Path, weight: str, info):
@@ -101,16 +104,20 @@ def saveSubsettedFont(font_path: Path, output_dir: Path, weight: str, info):
                 else:
                     record.string = subset_fontname
 
-            with open(output_dir.joinpath(f'{idx}.woff'), 'wb') as woff_fd:
+            woff_file = output_dir.joinpath(f'{idx}.woff')
+            with open(woff_file, 'wb') as woff_fd:
                 options.flavor = 'woff'
                 font.flavorData = WOFFFlavorData()
                 font.flavorData.metaData = metadata
                 save_font(font, woff_fd, options)
-            with open(output_dir.joinpath(f'{idx}.woff2'), 'wb') as woff2_fd:
+                logger.info(f"Saved {woff_file}")
+            woff2_file = output_dir.joinpath(f'{idx}.woff2')
+            with open(woff2_file, 'wb') as woff2_fd:
                 options.flavor = 'woff2'
                 font.flavorData = WOFF2FlavorData()
                 font.flavorData.metaData = metadata
                 save_font(font, woff2_fd, options)
+                logger.info(f"Saved {woff2_file}")
 
 
 def generateCss(css_family_name: str, font_path: Path, weight: str, info, fallback=False):
@@ -173,8 +180,10 @@ def generateCss(css_family_name: str, font_path: Path, weight: str, info, fallba
 
 def saveCss(output_dir: Path, css: str, basename: str):
     encoded = css.encode('utf-8')
-    with open(output_dir.joinpath(f"./{basename}.min.css"), 'wb') as file:
+    css_file = output_dir.joinpath(f"./{basename}.min.css")
+    with open(css_file, 'wb') as file:
         file.write(encoded)
+        logger.info(f"Saved {css_file}")
 
 
 def generateMetadata(info):
