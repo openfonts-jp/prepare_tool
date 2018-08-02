@@ -37,37 +37,39 @@ def main(json_file: Path, output_dir: Path):
         fonts_dir.mkdir(parents=True, exist_ok=True)
         subset_dir.mkdir(parents=True, exist_ok=True)
 
-        font_filepath_dict = dict()
+        font_fileinfo_dict = dict()
         for file_info in font_info['files']:
             archive_file = downloadFile(file_info['from'], download_dir)
             extractFile(archive_file, download_dir)
 
-            for weight, font_filename in file_info['fonts'].items():
-                if font_filename is None:
+            for weight, font_fileinfo in file_info['fonts'].items():
+                if font_fileinfo is None:
                     continue
-                matched_filepath_list = list(download_dir.glob(f"**/{font_filename}"))
+                if not isinstance(font_fileinfo, dict):
+                    font_fileinfo = dict(name=font_fileinfo)
+                matched_filepath_list = list(download_dir.glob(f"**/{font_fileinfo['name']}"))
                 if len(matched_filepath_list) == 0:
-                    raise Exception(f"{font_filename} is not found.")
+                    raise Exception(f"{font_fileinfo['name']} is not found.")
                 elif len(matched_filepath_list) != 1:
-                    raise Exception(f"2 or more files with same name as {font_filename} are found.")
-                font_filepath_dict[weight] = matched_filepath_list[0]
+                    raise Exception(f"2 or more files with same name as {font_fileinfo['name']} are found.")
+                font_fileinfo_dict[weight] = dict(path=matched_filepath_list[0], number=font_fileinfo['number'])
 
-        saveFonts(font_filepath_dict, fonts_dir, info=font_info)
+        saveFonts(font_fileinfo_dict, fonts_dir, info=font_info)
 
         css = ''
         fallbackCss = ''
-        for weight, font_filepath in font_filepath_dict.items():
-            saveSubsettedFont(font_filepath, subset_dir, weight=weight, info=font_info)
+        for weight, font_fileinfo in font_fileinfo_dict.items():
+            saveSubsettedFont(font_fileinfo, subset_dir, weight=weight, info=font_info)
             css += generateCss(
                 font_info['name'],
-                font_filepath,
+                font_fileinfo,
                 weight=weight,
                 info=font_info,
             )
             if 'fallback' in font_info:
                 fallbackCss += generateCss(
                     font_info['name'],
-                    font_filepath,
+                    font_fileinfo,
                     weight=weight,
                     info=font_info,
                     fallback=font_info['fallback'],

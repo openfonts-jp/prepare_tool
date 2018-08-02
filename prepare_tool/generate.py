@@ -49,7 +49,7 @@ METADATA_TEMPLATE_DIR = ROOT_DIR_PATH.joinpath('./templates/metadata').resolve()
 STYLESHEETS_TEMPLATE_DIR = ROOT_DIR_PATH.joinpath('./templates/stylesheets').resolve()
 
 
-def saveFonts(font_path_dict: dict, output_dir: Path, info):
+def saveFonts(font_fileinfo_dict: dict, output_dir: Path, info):
     with TemporaryDirectory() as tmp_dir_pathstr:
         tmp_dir = Path(tmp_dir_pathstr)
 
@@ -61,9 +61,9 @@ def saveFonts(font_path_dict: dict, output_dir: Path, info):
         with open(tmp_dir.joinpath('LICENSE'), 'w', encoding='utf-8') as license_fd:
             license_fd.write(license_text)
 
-        for weight, font_path in font_path_dict.items():
-            ext = font_path.suffix
-            copyfile(font_path, tmp_dir.joinpath(f"{info['id']}-{weight}{ext}"))
+        for weight, font_fileinfo in font_fileinfo_dict.items():
+            ext = font_fileinfo['path'].suffix
+            copyfile(font_fileinfo['path'], tmp_dir.joinpath(f"{info['id']}-{weight}{ext}"))
 
         with BytesIO() as stream:
             with TarFile.open(mode='w', fileobj=stream) as archive:
@@ -75,7 +75,7 @@ def saveFonts(font_path_dict: dict, output_dir: Path, info):
                 logger.info(f"Saved {archive_file}")
 
 
-def saveSubsettedFont(font_path: Path, output_dir: Path, weight: str, info):
+def saveSubsettedFont(font_fileinfo: dict, output_dir: Path, weight: str, info):
     output_dir = output_dir.joinpath(f"./{info['version']}/{weight}")
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -86,6 +86,8 @@ def saveSubsettedFont(font_path: Path, output_dir: Path, weight: str, info):
     subset_fontname = fake.slug()  # pylint: disable=no-member
 
     options = Options()
+    if 'number' in font_fileinfo:
+        options.font_number = font_fileinfo['number']
     options.layout_features = ['*']
     options.obfuscate_names = True
 
@@ -95,7 +97,7 @@ def saveSubsettedFont(font_path: Path, output_dir: Path, weight: str, info):
             for line in fd.readlines():
                 unicodes.extend(parse_unicodes(line.split('#')[0]))
 
-        with load_font(font_path, options) as font:
+        with load_font(font_fileinfo['path'], options) as font:
             subsetter = Subsetter(options=options)
             subsetter.populate(unicodes=unicodes)
             subsetter.subset(font)
@@ -122,7 +124,7 @@ def saveSubsettedFont(font_path: Path, output_dir: Path, weight: str, info):
                 logger.info(f"Saved {woff2_file}")
 
 
-def generateCss(css_family_name: str, font_path: Path, weight: str, info, fallback=False):
+def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fallback=False):
     if fallback is not False:
         return f"""
             @font-face {{
@@ -133,7 +135,8 @@ def generateCss(css_family_name: str, font_path: Path, weight: str, info, fallba
         """
 
     family_name, postscript_name = None, None
-    with TTFont(font_path, lazy=True) as font:
+    font_number = font_fileinfo['number'] if 'number' in font_fileinfo else -1
+    with TTFont(font_fileinfo['path'], fontNumber=font_number, lazy=True) as font:
         family_name_record = font['name'].getName(
             nameID=FAMILY_RELATED_IDS['LEGACY_FAMILY'],
             platformID=3,
