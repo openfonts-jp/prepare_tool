@@ -29,6 +29,8 @@ FAMILY_RELATED_IDS = dict(
     WWS_FAMILY=21,
 )
 
+COPYRIGHT_ID = 0
+
 WEIGHT_NUMBERS = dict(
     thin='100',
     extraLight='200',
@@ -99,10 +101,10 @@ def saveSubsettedFont(font_path: Path, output_dir: Path, weight: str, info):
             subsetter.subset(font)
 
             for record in font['name'].names:
-                if record.nameID not in FAMILY_RELATED_IDS.values():
-                    continue
-                else:
+                if record.nameID in FAMILY_RELATED_IDS.values():
                     record.string = subset_fontname
+                elif record.nameID == COPYRIGHT_ID:
+                    record.string = '\n'.join(info['copyrights'])
 
             woff_file = output_dir.joinpath(f'{idx}.woff')
             with open(woff_file, 'wb') as woff_fd:
