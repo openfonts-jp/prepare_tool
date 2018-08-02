@@ -52,7 +52,11 @@ def main(json_file: Path, output_dir: Path):
                     raise Exception(f"{font_fileinfo['name']} is not found.")
                 elif len(matched_filepath_list) != 1:
                     raise Exception(f"2 or more files with same name as {font_fileinfo['name']} are found.")
-                font_fileinfo_dict[weight] = dict(path=matched_filepath_list[0], number=font_fileinfo['number'])
+
+                if 'number' in font_fileinfo:
+                    font_fileinfo_dict[weight] = dict(path=matched_filepath_list[0], number=font_fileinfo['number'])
+                else:
+                    font_fileinfo_dict[weight] = dict(path=matched_filepath_list[0])
 
         saveFonts(font_fileinfo_dict, fonts_dir, info=font_info)
 
