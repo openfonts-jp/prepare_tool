@@ -117,7 +117,6 @@ def saveSubsettedFont(font_fileinfo: dict, output_dir: Path, weight: str, info):
     subset_fontname = fake.slug()  # pylint: disable=no-member
 
     options = Options()
-    options.font_number = font_fileinfo.get('number', -1)
     options.layout_features = ['*']
     options.obfuscate_names = True
 
