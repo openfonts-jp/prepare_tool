@@ -1,3 +1,4 @@
+import subprocess
 import yaml
 import pystache
 import brotli
@@ -7,7 +8,7 @@ import zopfli.gzip as gzip
 from io import BytesIO
 from tarfile import TarFile
 from shutil import copyfile
-from tempfile import TemporaryDirectory
+from tempfile import TemporaryDirectory, mkstemp
 from itertools import chain
 from pathlib import Path
 from xml.etree.ElementTree import Element, SubElement, tostring
@@ -75,6 +76,36 @@ def saveFonts(font_fileinfo_dict: dict, output_dir: Path, info):
                 logger.info(f"Saved {archive_file}")
 
 
+def generateOpenTypeFont(font_path: Path, number=None):
+    if number is None:
+        number = 0
+
+    tmp_file = Path(mkstemp(suffix='.otf')[1])
+    subprocess.run(
+        [
+            'fontforge',
+            '-lang=ff',
+            '-c',
+            'Open($1);Generate($2);',
+            f"{font_path}({number})",
+            tmp_file,
+        ],
+        check=True,
+    )
+
+    # Fix vmtx (fontforge calcs wrong vmtx tbs)
+    with TTFont(tmp_file) as font:
+        sTypoAscender = font['OS/2'].sTypoAscender
+        for glyphName in font['vmtx'].metrics.keys():
+            font['vmtx'].metrics[glyphName] = (
+                font['vmtx'].metrics[glyphName][0],
+                sTypoAscender - font['vmtx'].metrics[glyphName][1],
+            )
+        font.save(tmp_file)
+
+    return tmp_file
+
+
 def saveSubsettedFont(font_fileinfo: dict, output_dir: Path, weight: str, info):
     output_dir = output_dir.joinpath(f"./{info['version']}/{weight}")
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -86,10 +117,13 @@ def saveSubsettedFont(font_fileinfo: dict, output_dir: Path, weight: str, info):
     subset_fontname = fake.slug()  # pylint: disable=no-member
 
     options = Options()
-    if 'number' in font_fileinfo:
-        options.font_number = font_fileinfo['number']
+    options.font_number = font_fileinfo.get('number', -1)
     options.layout_features = ['*']
     options.obfuscate_names = True
+
+    tmp_otf_path = None
+    if font_fileinfo['path'].suffix != '.otf':
+        tmp_otf_path = generateOpenTypeFont(font_fileinfo['path'], font_fileinfo.get('number', None))
 
     for idx, unicodes_file in enumerate(UNICODE_TEXT_DIR.glob('./**/*.txt')):
         unicodes = []
@@ -97,7 +131,7 @@ def saveSubsettedFont(font_fileinfo: dict, output_dir: Path, weight: str, info):
             for line in fd.readlines():
                 unicodes.extend(parse_unicodes(line.split('#')[0]))
 
-        with load_font(font_fileinfo['path'], options) as font:
+        with load_font(tmp_otf_path or font_fileinfo['path'], options) as font:
             subsetter = Subsetter(options=options)
             subsetter.populate(unicodes=unicodes)
             subsetter.subset(font)
@@ -123,6 +157,9 @@ def saveSubsettedFont(font_fileinfo: dict, output_dir: Path, weight: str, info):
                 save_font(font, woff2_fd, options)
                 logger.info(f"Saved {woff2_file}")
 
+    if tmp_otf_path is not None:
+        tmp_otf_path.unlink()
+
 
 def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fallback=False):
     if fallback is not False:
@@ -135,8 +172,7 @@ def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fa
         """
 
     family_name, postscript_name = None, None
-    font_number = font_fileinfo['number'] if 'number' in font_fileinfo else -1
-    with TTFont(font_fileinfo['path'], fontNumber=font_number, lazy=True) as font:
+    with TTFont(font_fileinfo['path'], fontNumber=font_fileinfo.get('number', -1), lazy=True) as font:
         family_name_record = font['name'].getName(
             nameID=FAMILY_RELATED_IDS['LEGACY_FAMILY'],
             platformID=3,

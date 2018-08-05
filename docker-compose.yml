@@ -1,0 +1,7 @@
+version: '3'
+services:
+  prepare_tool:
+    build: .
+    image: openfontsjp/prepare_tool
+    volumes:
+      - "./:/workdir"
