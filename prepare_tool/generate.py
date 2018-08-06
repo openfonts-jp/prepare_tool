@@ -164,13 +164,14 @@ def saveSubsettedFont(font_fileinfo: dict, output_dir: Path, weight: str, info):
 
 def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fallback=False, force=False):
     if fallback is not False:
-        return f"""
+        css = f"""
             @font-face {{
                 font-family: '{css_family_name}';
                 src: local('{fallback}');
                 font-weight: {WEIGHT_NUMBERS[weight]};
             }}
         """
+        return css_minify(css)
 
     family_name_list = getFamilyNameList(font_fileinfo) if force is not True else list()
     css = ''
