@@ -14,12 +14,13 @@ def cli():
     parser = argparse.ArgumentParser(prog='prepare_tool')
     parser.add_argument('json_file', metavar='json_file', type=Path, help='JSON file')
     parser.add_argument('--output-dir', dest='output_dir', type=Path, required=True, help='Output directory')
+    parser.add_argument('--only-css', dest='onlyCss', action='store_true')
 
     args = vars(parser.parse_args())
     return main(**args)
 
 
-def main(json_file: Path, output_dir: Path):
+def main(json_file: Path, output_dir: Path, **options):
     if (json_file.is_file() != True):
         logger.error(f"{json_file} is not found.")
         sys.exit(1)
@@ -60,15 +61,18 @@ def main(json_file: Path, output_dir: Path):
                 else:
                     font_fileinfo_dict[weight] = dict(path=matched_filepath_list[0])
 
-        logger.info(f"Packing files")
-        saveFonts(font_fileinfo_dict, fonts_dir, info=font_info)
+        if options['onlyCss'] is not True:
+            logger.info(f"Packing files")
+            saveFonts(font_fileinfo_dict, fonts_dir, info=font_info)
 
         css = ''
         forceCss = ''
         fallbackCss = ''
         for weight, font_fileinfo in font_fileinfo_dict.items():
-            logger.info(f"Creating subset fonts (weight: {weight})")
-            saveSubsettedFont(font_fileinfo, subset_dir, weight=weight, info=font_info)
+            if options['onlyCss'] is not True:
+                logger.info(f"Creating subset fonts (weight: {weight})")
+                saveSubsettedFont(font_fileinfo, subset_dir, weight=weight, info=font_info)
+
             css += generateCss(
                 font_info['name'],
                 font_fileinfo,
