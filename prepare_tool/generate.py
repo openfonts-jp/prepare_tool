@@ -181,7 +181,7 @@ def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fa
             @font-face {{
                 font-family: '{css_family_name}';
                 src:
-                    {''.join(map(family_name_list, lambda name: f"local('{name}'),"))}
+                    {''.join(map(lambda name: f"local('{name}'),", family_name_list))}
                     url(./{info['version']}/{weight}/{idx}.woff2) format('woff2'),
                     url(./{info['version']}/{weight}/{idx}.woff) format('woff');
                 font-weight: {WEIGHT_NUMBERS[weight]};
