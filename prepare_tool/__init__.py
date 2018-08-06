@@ -64,6 +64,7 @@ def main(json_file: Path, output_dir: Path):
         saveFonts(font_fileinfo_dict, fonts_dir, info=font_info)
 
         css = ''
+        forceCss = ''
         fallbackCss = ''
         for weight, font_fileinfo in font_fileinfo_dict.items():
             logger.info(f"Creating subset fonts (weight: {weight})")
@@ -73,6 +74,13 @@ def main(json_file: Path, output_dir: Path):
                 font_fileinfo,
                 weight=weight,
                 info=font_info,
+            )
+            forceCss += generateCss(
+                font_info['name'],
+                font_fileinfo,
+                weight=weight,
+                info=font_info,
+                force=True,
             )
             if 'fallback' in font_info:
                 fallbackCss += generateCss(
@@ -85,5 +93,6 @@ def main(json_file: Path, output_dir: Path):
 
         logger.info(f"Creating CSS")
         saveCss(subset_dir, css, 'style')
+        saveCss(subset_dir, forceCss, 'style.force')
         if 'fallback' in font_info:
             saveCss(subset_dir, fallbackCss, 'style.fallback')

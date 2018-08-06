@@ -162,7 +162,7 @@ def saveSubsettedFont(font_fileinfo: dict, output_dir: Path, weight: str, info):
         tmp_otf_path.unlink()
 
 
-def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fallback=False):
+def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fallback=False, force=False):
     if fallback is not False:
         return f"""
             @font-face {{
@@ -172,28 +172,7 @@ def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fa
             }}
         """
 
-    family_name, postscript_name = None, None
-    with TTFont(font_fileinfo['path'], fontNumber=font_fileinfo.get('number', -1), lazy=True) as font:
-        family_name_record = font['name'].getName(
-            nameID=FAMILY_RELATED_IDS['LEGACY_FAMILY'],
-            platformID=3,
-            platEncID=1,
-            langID=0x409,
-        )
-        if family_name_record is not None:
-            family_name = family_name_record.toUnicode()
-
-        postscript_name_record = font['name'].getName(
-            nameID=FAMILY_RELATED_IDS['LEGACY_FAMILY'],
-            platformID=3,
-            platEncID=1,
-            langID=0x409,
-        )
-        if postscript_name_record is not None:
-            postscript_name = postscript_name_record.toUnicode()
-
-    has_postscript_name = family_name != postscript_name and postscript_name is not None
-
+    family_name_list = getFamilyNameList(font_fileinfo) if force is not True else list()
     css = ''
     for idx, unicodes_file in enumerate(UNICODE_TEXT_DIR.glob('./**/*.txt')):
         with open(unicodes_file, 'r') as fd:
@@ -202,8 +181,7 @@ def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fa
             @font-face {{
                 font-family: '{css_family_name}';
                 src:
-                    local('{family_name}'),
-                    {f"local('{postscript_name}')," if has_postscript_name else ""}
+                    {''.join(map(family_name_list, lambda name: f"local('{name}'),"))}
                     url(./{info['version']}/{weight}/{idx}.woff2) format('woff2'),
                     url(./{info['version']}/{weight}/{idx}.woff) format('woff');
                 font-weight: {WEIGHT_NUMBERS[weight]};
@@ -218,6 +196,25 @@ def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fa
     with open(template_path, 'r', encoding='utf-8') as file:
         rendered = pystache.render(file.read(), dict(css=css_minify(css)))
     return rendered
+
+
+def getFamilyNameList(font_fileinfo: dict):
+    family_name_set = set()
+    with TTFont(font_fileinfo['path'], fontNumber=font_fileinfo.get('number', -1), lazy=True) as font:
+        for nameID in [
+            FAMILY_RELATED_IDS['LEGACY_FAMILY'],
+            FAMILY_RELATED_IDS['POSTSCRIPT_NAME'],
+            FAMILY_RELATED_IDS['PREFERRED_FAMILY'],
+        ]:
+            name_record = font['name'].getName(
+                nameID=nameID,
+                platformID=3,
+                platEncID=1,
+                langID=0x409,
+            )
+            if name_record is not None:
+                family_name_set.add(name_record.toUnicode())
+    return list(family_name_set)
 
 
 def saveCss(output_dir: Path, css: str, basename: str):
