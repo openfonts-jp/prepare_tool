@@ -95,13 +95,14 @@ def generateOpenTypeFont(font_path: Path, number=None):
 
     # Fix vmtx (fontforge calcs wrong vmtx tbs)
     with TTFont(tmp_file) as font:
-        sTypoAscender = font['OS/2'].sTypoAscender
-        for glyphName in font['vmtx'].metrics.keys():
-            font['vmtx'].metrics[glyphName] = (
-                font['vmtx'].metrics[glyphName][0],
-                sTypoAscender - font['vmtx'].metrics[glyphName][1],
-            )
-        font.save(tmp_file)
+        if 'vmtx' in font:
+            sTypoAscender = font['OS/2'].sTypoAscender
+            for glyphName in font['vmtx'].metrics.keys():
+                font['vmtx'].metrics[glyphName] = (
+                    font['vmtx'].metrics[glyphName][0],
+                    sTypoAscender - font['vmtx'].metrics[glyphName][1],
+                )
+            font.save(tmp_file)
 
     return tmp_file
 
