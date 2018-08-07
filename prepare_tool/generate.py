@@ -164,14 +164,13 @@ def saveSubsettedFont(font_fileinfo: dict, output_dir: Path, weight: str, info):
 
 def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fallback=False, force=False):
     if fallback is not False:
-        css = f"""
+        return f"""
             @font-face {{
                 font-family: '{css_family_name}';
                 src: local('{fallback}');
                 font-weight: {WEIGHT_NUMBERS[weight]};
             }}
         """
-        return css_minify(css)
 
     family_name_list = getFamilyNameList(font_fileinfo) if force is not True else list()
     css = ''
@@ -191,12 +190,7 @@ def generateCss(css_family_name: str, font_fileinfo: dict, weight: str, info, fa
             }}
         """
 
-    template_path = STYLESHEETS_TEMPLATE_DIR.joinpath(f"./{info['license']['id']}.css")
-    if not template_path.exists():
-        raise Exception(f"{info['license']['id']} is invalid license id.")
-    with open(template_path, 'r', encoding='utf-8') as file:
-        rendered = pystache.render(file.read(), dict(css=css_minify(css)))
-    return rendered
+    return css
 
 
 def getFamilyNameList(font_fileinfo: dict):
@@ -218,12 +212,20 @@ def getFamilyNameList(font_fileinfo: dict):
     return list(family_name_set)
 
 
-def saveCss(output_dir: Path, css: str, basename: str):
-    encoded = css.encode('utf-8')
+def saveCss(output_dir: Path, css: str, basename: str, info, fallback=False):
+    rendered = css
+    if fallback is not True:
+        template_path = STYLESHEETS_TEMPLATE_DIR.joinpath(f"./{info['license']['id']}.css")
+        if not template_path.exists():
+            raise Exception(f"{info['license']['id']} is invalid license id.")
+        with open(template_path, 'r', encoding='utf-8') as file:
+            rendered = pystache.render(file.read(), dict(css=css_minify(css)))
+
     css_file = output_dir.joinpath(f"./{basename}.min.css")
     with open(css_file, 'wb') as file:
-        file.write(encoded)
-        logger.info(f"Saved {css_file}")
+        file.write(rendered.encode('utf-8'))
+
+    logger.info(f"Saved {css_file}")
 
 
 def generateMetadata(info):

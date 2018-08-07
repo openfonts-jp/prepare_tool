@@ -96,7 +96,7 @@ def main(json_file: Path, output_dir: Path, **options):
                 )
 
         logger.info(f"Creating CSS")
-        saveCss(subset_dir, css, 'style')
-        saveCss(subset_dir, forceCss, 'style.force')
+        saveCss(subset_dir, css, 'style', info=font_info)
+        saveCss(subset_dir, forceCss, 'style.force', info=font_info)
         if 'fallback' in font_info:
-            saveCss(subset_dir, fallbackCss, 'style.fallback')
+            saveCss(subset_dir, fallbackCss, 'style.fallback', info=font_info, fallback=True)
