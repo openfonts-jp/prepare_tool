@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.openfonts.jp/package/v01/schema.json",
+  "$schema": "https://schemas.openfonts.jp/package/v0.0.3/schema.json",
   "id": "source-han-serif",
   "name": "源ノ明朝",
   "version": "1.001",
@@ -13,20 +13,34 @@
   "owners": ["Adobe Systems Incorporated"],
   "files": [
     {
-      "from": "https://github.com/adobe-fonts/source-han-serif/raw/1.001R/OTF/SourceHanSerifJ_EL-M.zip",
+      "url": "https://github.com/adobe-fonts/source-han-serif/raw/1.001R/OTF/SourceHanSerifJ_EL-M.zip",
       "fonts": {
-        "extraLight": "SourceHanSerif-ExtraLight.otf",
-        "light": "SourceHanSerif-Light.otf",
-        "normal": "SourceHanSerif-Regular.otf",
-        "medium": "SourceHanSerif-Medium.otf"
+        "extraLight": {
+          "name": "SourceHanSerif-ExtraLight.otf"
+        },
+        "light": {
+          "name": "SourceHanSerif-Light.otf"
+        },
+        "normal": {
+          "name": "SourceHanSerif-Regular.otf"
+        },
+        "medium": {
+          "name": "SourceHanSerif-Medium.otf"
+        }
       }
     },
     {
-      "from": "https://github.com/adobe-fonts/source-han-serif/raw/1.001R/OTF/SourceHanSerifJ_SB-H.zip",
+      "url": "https://github.com/adobe-fonts/source-han-serif/raw/1.001R/OTF/SourceHanSerifJ_SB-H.zip",
       "fonts": {
-        "semiBold": "SourceHanSerif-SemiBold.otf",
-        "bold": "SourceHanSerif-Bold.otf",
-        "extraBold": "SourceHanSerif-Heavy.otf"
+        "semiBold": {
+          "name": "SourceHanSerif-SemiBold.otf"
+        },
+        "bold": {
+          "name": "SourceHanSerif-Bold.otf"
+        },
+        "extraBold": {
+          "name": "SourceHanSerif-Heavy.otf"
+        }
       }
     }
   ],

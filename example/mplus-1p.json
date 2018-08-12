@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.openfonts.jp/package/v01/schema.json",
+  "$schema": "https://schemas.openfonts.jp/package/v0.0.3/schema.json",
   "id": "mplus-1p",
   "name": "M+ 1p",
   "version": "063",
@@ -17,15 +17,29 @@
   ],
   "files": [
     {
-      "from": "https://osdn.net/frs/redir.php?f=mplus-fonts%2F62344%2Fmplus-TESTFLIGHT-063.tar.xz",
+      "url": "https://osdn.net/frs/redir.php?f=mplus-fonts%2F62344%2Fmplus-TESTFLIGHT-063.tar.xz",
       "fonts": {
-        "extraLight": "mplus-1p-thin.ttf",
-        "light": "mplus-1p-light.ttf",
-        "normal": "mplus-1p-regular.ttf",
-        "medium": "mplus-1p-medium.ttf",
-        "semiBold": "mplus-1p-bold.ttf",
-        "bold": "mplus-1p-heavy.ttf",
-        "extraBold": "mplus-1p-black.ttf"
+        "extraLight": {
+          "name": "mplus-1p-thin.ttf"
+        },
+        "light": {
+          "name": "mplus-1p-light.ttf"
+        },
+        "normal": {
+          "name": "mplus-1p-regular.ttf"
+        },
+        "medium": {
+          "name": "mplus-1p-medium.ttf"
+        },
+        "semiBold": {
+          "name": "mplus-1p-bold.ttf"
+        },
+        "bold": {
+          "name": "mplus-1p-heavy.ttf"
+        },
+        "extraBold": {
+          "name": "mplus-1p-black.ttf"
+        }
       }
     }
   ],
