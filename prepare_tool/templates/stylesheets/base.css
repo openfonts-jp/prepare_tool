@@ -1,0 +1,12 @@
+@font-face {
+  font-family: '{{& package_info.name}}';
+  src:
+      {{#local_name_list}}
+      local('{{& .}}'),
+      {{/local_name_list}}
+      url({{& font_base_path}}.woff2) format('woff2'),
+      url({{& font_base_path}}.woff) format('woff');
+  font-weight: {{& weight_number}};
+  font-display: swap;
+  unicode-range: {{& unicodes}};
+}

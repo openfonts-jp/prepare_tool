@@ -10,13 +10,13 @@ zopfli = "*"
 pyyaml = "*"
 requests = "*"
 pystache = "*"
-css-html-js-minify = "*"
 faker = "*"
 logzero = "*"
 
 [dev-packages]
 pylint = "*"
 yapf = "*"
+mypy = "*"
 
 [requires]
 python_version = "3.7"

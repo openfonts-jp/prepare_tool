@@ -1,5 +1,5 @@
 import sys
-from . import cli
+from prepare_tool import cli
 
 if __name__ == '__main__':
     sys.exit(cli())

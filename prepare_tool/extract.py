@@ -5,22 +5,21 @@ from pathlib import Path
 ZIP_FILENAME_UTF8_FLAG = 0x800
 
 
-def extractFile(file_path: Path, export_dir: Path):
-    ext = file_path.suffixes
+def extractFilesFromArchive(archive_path: Path, export_dir: Path):
+    archive_name = archive_path.name
 
-    if len(ext) == 2:
-        if ext[-1] == ".xz" and ext[-2] == ".tar":
-            return extractTarXz(file_path, export_dir)
-    if ext[-1] == ".zip":
-        return extractZip(file_path, export_dir)
+    if archive_name.endswith('.tar.xz'):
+        return extractFilesFromTarXz(archive_path, export_dir)
+    elif archive_name.endswith('.zip'):
+        return extractFilesFromZip(archive_path, export_dir)
 
-    raise Exception(f"{file_path} is unsupported archive file.")
+    raise Exception(f"{archive_name} is unsupported archive file.")
 
 
-def extractZip(file_path: Path, export_dir: Path):
+def extractFilesFromZip(file_path: Path, export_dir: Path):
     with ZipFile(file_path, mode='r') as archive:
         for info in archive.filelist:
-            if info.is_dir():
+            if info.is_dir():  # type: ignore
                 continue
 
             filename = info.filename
@@ -35,7 +34,7 @@ def extractZip(file_path: Path, export_dir: Path):
     return
 
 
-def extractTarXz(file_path: Path, export_dir: Path):
+def extractFilesFromTarXz(file_path: Path, export_dir: Path):
     with TarFile.open(file_path, mode='r:xz') as archive:
         archive.extractall(export_dir)
     return
