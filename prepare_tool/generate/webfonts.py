@@ -44,7 +44,7 @@ def __generateWebFontsForWeight(font_info: FontInfo, weight: str, output_dir: Pa
     options.obfuscate_names = True
 
     tmp_otf_path = None
-    if str(font_info).endswith('.otf'):
+    if not str(font_info).endswith('.otf'):
         tmp_otf_path = __generateOpenTypeFont(font_info)
 
     for unicodes_file in FILE_DIR.UNICODE_TEXT.glob('./**/*.txt'):  # type: Path
