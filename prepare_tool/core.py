@@ -34,7 +34,6 @@ class PrepareTool:
             json_dict = json.loads(file.read())
             del json_dict['$schema']
             self.package_info = PackageInfo(**json_dict)
-        print(self.package_info)
 
         self.__tmp = TemporaryDirectory(prefix='typeface-')
         self.options = Options(**options)
