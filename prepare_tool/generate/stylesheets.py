@@ -109,7 +109,15 @@ def __getLocalFamilyNameList(font_info: FontInfo):
         NAME_ID.POSTSCRIPT_NAME,
         NAME_ID.PREFERRED_FAMILY,
     ]
-    with TTFont(font_info.path, fontNumber=font_info.number or -1, lazy=True) as font:
+
+    options = dict(
+        file=font_info.path,
+        lazy=True,
+    )
+    if font_info.number is not None:
+        options['fontNumber'] = font_info.number
+
+    with TTFont(**options) as font:
         for nameID in local_name_id_list:
             name_record = font['name'].getName(
                 nameID=nameID,
