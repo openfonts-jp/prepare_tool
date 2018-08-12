@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "517c3a87497f66bf91018e6c8c9f277db8fcacc66b4ad0a1d11eb9ade8eed830"
+            "sha256": "58ab110475662b5a6e72351393c9cd861b37fc08626bf8979177335aee6d9c20"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -66,6 +66,14 @@
             ],
             "markers": "sys_platform == 'win32'",
             "version": "==0.3.9"
+        },
+        "css-html-js-minify": {
+            "hashes": [
+                "sha256:3da9d35ac0db8ca648c1b543e0e801d7ca0bab9e6bfd8418fee59d5ae001727a",
+                "sha256:4a9f11f7e0496f5284d12111f3ba4ff5ff2023d12f15d195c9c48bd97013746c"
+            ],
+            "index": "pypi",
+            "version": "==2.5.5"
         },
         "faker": {
             "hashes": [

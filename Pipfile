@@ -12,6 +12,7 @@ requests = "*"
 pystache = "*"
 faker = "*"
 logzero = "*"
+css-html-js-minify = "*"
 
 [dev-packages]
 pylint = "*"

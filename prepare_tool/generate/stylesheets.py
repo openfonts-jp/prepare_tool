@@ -2,6 +2,7 @@ import pystache
 from dataclasses import dataclass
 from pathlib import Path
 from fontTools.ttLib import TTFont
+from css_html_js_minify import css_minify
 
 from prepare_tool.core import FontInfo, FontWeightPaths
 from prepare_tool.package_info import PackageInfo
@@ -47,15 +48,16 @@ def generateStyleSheets(
 
     if fallback is True:
         with open(output_dir.joinpath('./fallback.min.css'), 'wb') as fallback_file_write_io:
-            fallback_file_write_io.write(generated.fallback.encode('utf-8'))
+            minified = css_minify(generated.fallback)
+            fallback_file_write_io.write(minified.encode('utf-8'))
 
     with open(output_dir.joinpath('./local-first.min.css'), 'wb') as local_file_write_io:
-        generated_with_license = pystache.render(license_template, {'css': generated.local})
-        local_file_write_io.write(generated_with_license.encode('utf-8'))
+        minified = pystache.render(license_template, {'css': css_minify(generated.local)})
+        local_file_write_io.write(minified.encode('utf-8'))
 
     with open(output_dir.joinpath('./style.min.css'), 'wb') as default_file_write_io:
-        generated_with_license = pystache.render(license_template, {'css': generated.default})
-        default_file_write_io.write(generated_with_license.encode('utf-8'))
+        minified = pystache.render(license_template, {'css': css_minify(generated.default)})
+        default_file_write_io.write(minified.encode('utf-8'))
 
 
 def __generateStyleSheetsWithWeight(
