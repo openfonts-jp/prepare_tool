@@ -59,7 +59,7 @@ class PrepareTool:
 
     def downloadFonts(self):
         for archive_info in self.package_info.files:  # type: ArchiveFileInfo
-            archive_file = downloadFileFromUrl(archive_info.url, self.dir_paths.tmp)
+            archive_file = downloadFileFromUrl(archive_info.url, self.dir_paths.tmp, package_info=self.package_info)
             extractFilesFromArchive(archive_file, self.dir_paths.tmp)
 
             for weight, file_info in vars(archive_info.fonts).items():  # type: str, FontFileInfo
