@@ -40,7 +40,8 @@ def __generateWebFontsForWeight(font_info: FontInfo, weight: str, output_dir: Pa
 
     options = Options()
     options.desubroutinize = True
-    options.layout_features = ['*']
+    for ignored in ['rvrn', 'locl']:
+        options.layout_features.remove(ignored)
     options.obfuscate_names = True
 
     tmp_otf_path = None
