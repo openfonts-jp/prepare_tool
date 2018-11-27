@@ -13,11 +13,6 @@ from prepare_tool.generate.stylesheets import generateStyleSheets
 
 
 @dataclass()
-class Options():
-    only_css: bool = False
-
-
-@dataclass()
 class DirPaths():
     tmp: Path
     output: Path
@@ -26,7 +21,7 @@ class DirPaths():
 
 
 class PrepareTool:
-    def __init__(self, json_file: Path, output_dir: Path, options: dict) -> None:
+    def __init__(self, json_file: Path, output_dir: Path) -> None:
         if (json_file.is_file() != True):
             raise FileNotFoundError(f"{json_file} is not found.")
 
@@ -36,7 +31,6 @@ class PrepareTool:
             self.package_info = PackageInfo(**json_dict)
 
         self.__tmp = TemporaryDirectory(prefix='typeface-')
-        self.options = Options(**options)
         self.dir_paths = DirPaths(
             tmp=Path(self.__tmp.name),
             output=output_dir,
