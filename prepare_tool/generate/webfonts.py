@@ -104,17 +104,32 @@ def __generateOpenTypeFont(font_info: FontInfo) -> Path:
     )
 
     # Fix vmtx (fontforge calcs wrong vmtx tbs)
-    with TTFont(tmp_file) as font:
-        if 'vmtx' in font:
-            sTypoAscender = font['OS/2'].sTypoAscender
-            for glyphName in font['vmtx'].metrics.keys():
-                font['vmtx'].metrics[glyphName] = (
-                    font['vmtx'].metrics[glyphName][0],
-                    sTypoAscender - font['vmtx'].metrics[glyphName][1],
-                )
-            font.save(tmp_file)
+    with TTFont(font_path, fontNumber=number) as ttf_font, TTFont(tmp_file) as otf_font:
+        __copyVMTXTable(source=ttf_font, target=otf_font).save(tmp_file)
 
     return tmp_file
+
+
+def __copyVMTXTable(source: TTFont, target: TTFont) -> TTFont:
+    if not ('vmtx' in source and 'vmtx' in target):
+        return target
+
+    target_reversed_cmap = target['cmap'].buildReversed()
+    source_cmap = source['cmap'].getBestCmap()
+
+    for target_glyph_name in target['vmtx'].metrics.keys():
+        source_glyph_name = None
+
+        if target_glyph_name in target_reversed_cmap:
+            cid = target_reversed_cmap[target_glyph_name].pop()
+            source_glyph_name = source_cmap[cid]
+        else:
+            gid = target.getGlyphID(target_glyph_name)
+            source_glyph_name = source.getGlyphName(gid)
+
+        target['vmtx'].metrics[target_glyph_name] = source['vmtx'].metrics[source_glyph_name]
+
+    return target
 
 
 def __generateMetadata(package_info: PackageInfo) -> str:
