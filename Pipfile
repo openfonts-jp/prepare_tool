@@ -20,7 +20,7 @@ yapf = "*"
 mypy = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.7.4"
 
 [scripts]
 start = "python -m prepare_tool"
