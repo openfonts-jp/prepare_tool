@@ -1,53 +1,50 @@
 {
-  "$schema": "https://schemas.openfonts.jp/package/v0.0.3/schema.json",
+  "$schema": "https://schemas.openfonts.jp/package/v0.1.0/schema.json",
   "id": "mplus-1p",
   "name": "M+ 1p",
-  "version": "063",
-  "categories": [
-    "Gothic"
-  ],
-  "characters": [
-    "Alphabets",
-    "Hiragana",
-    "Katakana",
-    "Kanji"
-  ],
-  "owners": [
-    "M+ FONTS PROJECT"
-  ],
-  "files": [
+  "version": "063a",
+  "category": "Gothic",
+  "characters": ["Alphabet", "Hiragana", "Katakana", "Kanji"],
+  "authors": ["M+ FONTS PROJECT"],
+  "license": "Mplus",
+  "copyrights": ["Copyright (C) 2002-2017 M+ FONTS PROJECT"],
+  "homepage": "https://mplus-fonts.osdn.jp/",
+  "features": {
+    "vert": true
+  },
+  "sources": [
     {
-      "url": "https://osdn.net/frs/redir.php?f=mplus-fonts%2F62344%2Fmplus-TESTFLIGHT-063.tar.xz",
+      "url": "https://osdn.net/frs/redir.php?f=mplus-fonts%2F62344%2Fmplus-TESTFLIGHT-063a.tar.xz",
       "fonts": {
         "extraLight": {
-          "name": "mplus-1p-thin.ttf"
+          "filename": "mplus-1p-thin.ttf",
+          "sha256": "3dc8e91b9349bd85bc0cd7a69df3e8bf097033e313a86fc3826356845fd51de4"
         },
         "light": {
-          "name": "mplus-1p-light.ttf"
+          "filename": "mplus-1p-light.ttf",
+          "sha256": "e63bfb16f3ffeffe2b79bc82edc273d7abd95c0fb6e95e228e5d508043db39dc"
         },
         "normal": {
-          "name": "mplus-1p-regular.ttf"
+          "filename": "mplus-1p-regular.ttf",
+          "sha256": "8fe6db0d6d9c2dff7b56f26eb8b912e7a07b7765b79594bc814cbffd2473d367"
         },
         "medium": {
-          "name": "mplus-1p-medium.ttf"
+          "filename": "mplus-1p-medium.ttf",
+          "sha256": "3950870121d7ed93f9482ddd893c80a6f7ebcdfaf7ef4357028a2833a8a73f4a"
         },
         "semiBold": {
-          "name": "mplus-1p-bold.ttf"
+          "filename": "mplus-1p-bold.ttf",
+          "sha256": "a64ca65a642a6df4df803e45db5b02e2ff0f6c3d0fcf653c44a57d898aa800db"
         },
         "bold": {
-          "name": "mplus-1p-heavy.ttf"
+          "filename": "mplus-1p-heavy.ttf",
+          "sha256": "ed8c9906291cdc0c63e48edabb3c17491edde8eea8d542d555de10529f42df42"
         },
         "extraBold": {
-          "name": "mplus-1p-black.ttf"
+          "filename": "mplus-1p-black.ttf",
+          "sha256": "a76934425588df3d9792ccdf5479c5e33f22fd75434799e52b33373f2041375f"
         }
       }
     }
-  ],
-  "license": {
-    "id": "Mplus"
-  },
-  "copyrights": [
-    "Copyright (C) 2002-2017 M+ FONTS PROJECT"
-  ],
-  "website": "https://mplus-fonts.osdn.jp/"
+  ]
 }

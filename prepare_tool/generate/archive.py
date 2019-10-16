@@ -1,43 +1,60 @@
-import subprocess
 import pystache
-import yaml
-import zopfli.gzip as gzip
-from typing import BinaryIO, Optional
-from io import BytesIO
-from shutil import copyfile
+import gzip
+from tempfile import TemporaryDirectory
 from pathlib import Path
+from shutil import copyfile
+from io import BytesIO
 from tarfile import TarFile
-from tempfile import TemporaryDirectory, mkstemp
 
-from prepare_tool.core import FontInfo, FontWeightPaths
-from prepare_tool.package_info import PackageInfo
-from prepare_tool.generate import FontInfo, FontWeightPaths
-from prepare_tool.generate.const import FILE_DIR
+from prepare_tool.core import Core
+from prepare_tool.const import FILE_DIR
+from prepare_tool.models import Font
 
 
-def generateArchive(font_weight_paths: FontWeightPaths, output_dir: Path, package_info: PackageInfo):
-    with TemporaryDirectory() as tmp_dir_pathstr:  # type: str
-        tmp_dir = Path(tmp_dir_pathstr)
+class ArchiveGenerator():
+    def __init__(self, core: Core) -> None:
+        self.__core = core
 
-        license_template_path: Path = FILE_DIR.LICENSE_TEMPLATE.joinpath(f"./{package_info.license.id}.txt")
-        if not license_template_path.exists():
-            raise Exception(f"{package_info.license.id} is invalid license id.")
+    def generate(self) -> None:
+        package = self.__core.package
+        output_dir = self.__core.directories.archives
 
-        with open(license_template_path, 'r', encoding='utf-8') as license_read_io:
-            license_text: str = pystache.render(license_read_io.read(), package_info)
-        with open(tmp_dir.joinpath('LICENSE'), 'w', encoding='utf-8') as license_write_io:
-            license_write_io.write(license_text)
+        with TemporaryDirectory() as tmp_dir_pathstr:
+            tmp_dir = Path(tmp_dir_pathstr)
+            archive_file = output_dir.joinpath(f"./{package.id}.tar.gz")
 
-        for weight, font_info in vars(font_weight_paths).items():  # type: str, FontInfo
-            if font_info is None:
-                continue
-            ext = font_info.path.suffix
-            copyfile(font_info.path, tmp_dir.joinpath(f"{package_info.id}-{weight}{ext}"))
+            self.__generateLicenseFile(tmp_dir)
+            self.__copyFontfile(tmp_dir)
+            self.__archive(target_path=tmp_dir, output_path=archive_file)
 
-        with BytesIO() as stream:  # type: BytesIO
-            with TarFile.open(mode='w', fileobj=stream) as archive:
-                for file_path in tmp_dir.glob('*'):  # type: Path
-                    archive.add(str(file_path), arcname=file_path.name, recursive=False)
-            archive_file: Path = output_dir.joinpath(f"./{package_info.id}.tar.gz")
-            with open(archive_file, 'wb') as archive_io:  # type: BinaryIO
+    def __generateLicenseFile(self, dest_dir: Path) -> None:
+        package = self.__core.package
+
+        template_path = FILE_DIR.LICENSE_TEMPLATE.joinpath(f"./{package.license}.txt")
+        if not template_path.exists():
+            raise Exception(f"{package.license} is invalid license id.")
+
+        with open(template_path, 'r', encoding='utf-8') as read_io:
+            license_text: str = pystache.render(read_io.read(), package)
+        with open(dest_dir.joinpath('LICENSE'), 'w', encoding='utf-8') as write_io:
+            write_io.write(license_text)
+
+    def __copyFontfile(self, dest_dir: Path) -> None:
+        package = self.__core.package
+
+        for source in package.sources:
+            weight: str
+            font: Font
+            for weight, font in source.fonts:
+                if font is None:
+                    continue
+                font_path = self.__core.findFontfilePath(font)
+                copyfile(font_path, dest_dir.joinpath(font_path.name))
+
+    def __archive(self, target_path: Path, output_path: Path) -> None:
+        with BytesIO() as stream, TarFile.open(mode='w', fileobj=stream) as archive:
+            for file_path in target_path.glob('*'):
+                archive.add(str(file_path), arcname=file_path.name, recursive=False)
+
+            with open(output_path, 'wb') as archive_io:
                 archive_io.write(gzip.compress(stream.getvalue()))

@@ -1,25 +1,18 @@
 _declaration:
   _attributes:
-    version: "1.0"
+    version: '1.0'
     encoding: UTF-8
 metadata:
   _attributes:
-    version: "1.0"
-  copyright:
-    # {{#copyrights}}
-    text:
-      _text: "{{& .}}"
-    # {{/copyrights}}
+    version: '1.0'
   license:
     _attributes:
       url: https://opensource.org/licenses/OFL-1.1
       id: OFL-1.1
     text:
-      -
-        _attributes:
+      - _attributes:
           xml:lang: en
         _text: |
-
           -----------------------------------------------------------
           SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
           -----------------------------------------------------------

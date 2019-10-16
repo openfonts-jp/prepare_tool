@@ -1,5 +1,0 @@
-@font-face {
-  font-family: '{{& package_info.name}}';
-  src: local('{{& package_info.fallback}}');
-  font-weight: {{& weight_number}};
-}
