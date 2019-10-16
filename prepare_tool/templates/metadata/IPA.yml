@@ -1,25 +1,18 @@
 _declaration:
   _attributes:
-    version: "1.0"
+    version: '1.0'
     encoding: UTF-8
 metadata:
   _attributes:
-    version: "1.0"
-  copyright:
-    # {{#copyrights}}
-    text:
-      _text: "{{& .}}"
-    # {{/copyrights}}
+    version: '1.0'
   license:
     _attributes:
       url: https://opensource.org/licenses/IPA
       id: IPA
     text:
-      -
-        _attributes:
+      - _attributes:
           xml:lang: en
         _text: |
-
           IPA Font License Agreement v1.0
 
           The Licensor provides the Licensed Program (as defined in Article 1 below) under the terms of this license agreement (“Agreement”).  Any use, reproduction or distribution of the Licensed Program, or any exercise of rights under this Agreement by a Recipient (as defined in Article 1 below) constitutes the Recipient's acceptance of this Agreement.  
@@ -70,11 +63,9 @@ metadata:
           Article 5 (Governing Law)
           1. IPA may publish revised and/or new versions of this License.   In such an event, the Recipient may select either this Agreement or any subsequent version of the Agreement in using, conducting the Reproduction and Other Exploitation of, or Redistributing the Licensed Program or a Derived Program.  Other matters not specified above shall be subject to the Copyright Law of Japan and other related laws and regulations of Japan.
           2. This Agreement shall be construed under the laws of Japan.
-      -
-        _attributes:
+      - _attributes:
           xml:lang: ja
         _text: |
-
           IPAフォントライセンス v1.0
 
           許諾者は、この使用許諾（以下「本契約」といいます。）に定める条件の下で、許諾プログラム（1条に定義するところによります。）を提供します。受領者（1条に定義するところによります。）が、許諾プログラムを使用し、複製し、または頒布する行為、その他、本契約に定める権利の利用を行った場合、受領者は本契約に同意したものと見なします。

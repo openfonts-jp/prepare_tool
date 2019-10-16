@@ -5,8 +5,10 @@ import argparse
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from prepare_tool.core import PrepareTool
+from prepare_tool.core import Core
 from prepare_tool.models import Package
+from prepare_tool.download import Downloader
+from prepare_tool.generate import ArchiveGenerator, StyleSheetGenerator, WebFontGenerator
 
 
 def cli():
@@ -19,9 +21,7 @@ def cli():
 
     generate_command_parser = subparsers.add_parser('generate', help='Generate webfonts.')
     generate_command_parser.add_argument('json_path', metavar='json_file', type=Path, help='JSON file')
-    generate_command_parser.add_argument(
-        '--output-dir', dest='output_dir', type=Path, required=True, help='Output directory'
-    )
+    generate_command_parser.add_argument('--output-dir', dest='output_dir', type=Path, required=True)
     generate_command_parser.add_argument('--no-generate-archive', dest='generate_archive', action='store_false')
     generate_command_parser.add_argument('--no-generate-webfonts', dest='generate_webfonts', action='store_false')
     generate_command_parser.add_argument('--no-generate-css', dest='generate_css', action='store_false')
@@ -35,14 +35,15 @@ def print_schema():
 
 
 def generate(json_path: Path, output_dir: Path, **options):
-    with PrepareTool(json_path, output_dir) as prepare_tool:
-        prepare_tool.downloadFonts()
+    with Core(json_path, output_dir) as prepare_tool:
+        Downloader(prepare_tool).download()
+
         if options['generate_archive'] is True:
-            prepare_tool.generateArchive()
+            ArchiveGenerator(prepare_tool).generate()
         if options['generate_webfonts'] is True:
-            prepare_tool.generateWebFonts()
+            WebFontGenerator(prepare_tool).generate()
         if options['generate_css'] is True:
-            prepare_tool.generateStyleSheets()
+            StyleSheetGenerator(prepare_tool).generate()
 
 
 def main(parser: argparse.ArgumentParser, command: str, **args):
