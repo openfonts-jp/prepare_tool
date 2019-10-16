@@ -6,7 +6,7 @@ authors = ["3846masa <3846masahiro+git@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "3.7.4"
+python = "^3.7.4"
 fonttools = "^4.0"
 brotli = "^1.0"
 zopfli = "^0.1.6"
