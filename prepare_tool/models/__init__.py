@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Generator, Tuple
 from enum import Enum
 from pydantic import BaseModel, Field, AnyUrl, Extra
 
@@ -48,6 +48,9 @@ class FontWeight(BaseModel):
     bold: Optional[Font] = Field(None)
     extraBold: Optional[Font] = Field(None)
     black: Optional[Font] = Field(None)
+
+    def __iter__(self) -> Generator[Tuple[str, Optional[Font]], None, None]:
+        return super().__iter__()
 
     class Config:
         extra = Extra.forbid

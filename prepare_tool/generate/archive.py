@@ -43,8 +43,6 @@ class ArchiveGenerator():
         package = self.__core.package
 
         for source in package.sources:
-            weight: str
-            font: Font
             for weight, font in source.fonts:
                 if font is None:
                     continue

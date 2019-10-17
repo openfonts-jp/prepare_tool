@@ -30,8 +30,6 @@ class StyleSheetGenerator():
 
         generated_style = ''
         for source in package.sources:
-            weight: str
-            font: Font
             for weight, font in source.fonts:
                 if font is None:
                     continue
