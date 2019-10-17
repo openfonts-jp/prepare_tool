@@ -21,7 +21,7 @@ pydantic = "^1.0b2"
 [tool.poetry.dev-dependencies]
 pylint = "^2.4"
 yapf = "^0.28.0"
-mypy = "^0.730.0"
+mypy = "^0.740"
 
 [tool.poetry.scripts]
 prepare_tool = "prepare_tool:cli"
