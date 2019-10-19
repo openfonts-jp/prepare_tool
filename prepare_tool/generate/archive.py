@@ -8,7 +8,6 @@ from tarfile import TarFile
 
 from prepare_tool.core import Core
 from prepare_tool.const import FILE_DIR
-from prepare_tool.models import Font
 
 
 class ArchiveGenerator():

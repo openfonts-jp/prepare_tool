@@ -19,9 +19,9 @@ css-html-js-minify = "^2.5"
 pydantic = "^1.0b2"
 
 [tool.poetry.dev-dependencies]
-pylint = "^2.4"
 yapf = "^0.28.0"
 mypy = "^0.740"
+flake8 = "^3.7"
 
 [tool.poetry.scripts]
 prepare_tool = "prepare_tool:cli"

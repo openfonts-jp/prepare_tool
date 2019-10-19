@@ -6,7 +6,6 @@ from tarfile import TarFile
 from zipfile import ZipFile
 
 from prepare_tool.core import Core
-from prepare_tool.models import Package
 
 ZIP_FILENAME_UTF8_FLAG = 0x800
 

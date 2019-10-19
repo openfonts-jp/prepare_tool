@@ -17,7 +17,7 @@ class Directories():
 
 class Core:
     def __init__(self, json_file: Path, output_dir: Path) -> None:
-        if (json_file.is_file() != True):
+        if not json_file.is_file():
             raise FileNotFoundError(f"{json_file} is not found.")
 
         with open(json_file, 'r', encoding='utf-8') as file:

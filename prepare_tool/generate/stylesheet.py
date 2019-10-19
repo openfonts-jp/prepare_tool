@@ -1,11 +1,10 @@
 import pystache
-from typing import Optional, Set, List
-from pathlib import Path
+from typing import Set, List
 from fontTools.ttLib import TTFont
 from css_html_js_minify import css_minify
 
 from prepare_tool.core import Core
-from prepare_tool.models import Package, Font
+from prepare_tool.models import Font
 from prepare_tool.const import NAME_ID, FILE_DIR, WEIGHT_NUMBER
 
 with open(FILE_DIR.STYLESHEETS_TEMPLATE.joinpath('./base.css'), 'r', encoding='utf-8') as base_template_read_io:
