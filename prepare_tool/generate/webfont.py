@@ -1,15 +1,13 @@
 import yaml
 from typing import List
-from pathlib import Path
 from xml.etree.ElementTree import Element, tostring as to_xml_string
 from faker import Faker
 from fontTools.subset import Options, Subsetter, load_font, save_font, parse_unicodes
-from fontTools.ttLib import TTFont
 from fontTools.ttLib.sfnt import WOFFFlavorData
 from fontTools.ttLib.woff2 import WOFF2FlavorData
 
 from prepare_tool.core import Core
-from prepare_tool.models import Package, Font
+from prepare_tool.models import Font
 from prepare_tool.const import FILE_DIR, NAME_ID, FAMILY_RELATED_NAME_ID
 
 

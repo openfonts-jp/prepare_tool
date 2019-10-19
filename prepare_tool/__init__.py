@@ -1,9 +1,5 @@
-import sys
-import json
 import argparse
-from logzero import logger
 from pathlib import Path
-from tempfile import TemporaryDirectory
 
 from prepare_tool.core import Core
 from prepare_tool.models import Package
@@ -18,7 +14,7 @@ def cli():
 
     subparsers = parser.add_subparsers(dest='command', metavar='command')
 
-    schema_command_parser = subparsers.add_parser('schema', help='Print OpenFonts.jp package JSON schema.')
+    subparsers.add_parser('schema', help='Print OpenFonts.jp package JSON schema.')
 
     validate_command_parser = subparsers.add_parser('validate', help='Validate hashes of font.')
     validate_command_parser.add_argument('json_path', metavar='json_file', type=Path, help='JSON file')
