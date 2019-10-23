@@ -16,7 +16,7 @@ pystache = "^0.5.4"
 faker = "^2.0"
 logzero = "^1.5"
 css-html-js-minify = "^2.5"
-pydantic = "^1.0b2"
+pydantic = "^1.0"
 
 [tool.poetry.dev-dependencies]
 yapf = "^0.28.0"
