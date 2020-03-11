@@ -20,7 +20,7 @@ pydantic = "^1.4"
 
 [tool.poetry.dev-dependencies]
 yapf = "^0.29.0"
-mypy = "^0.761"
+mypy = "^0.770"
 flake8 = "^3.7"
 
 [tool.poetry.scripts]
