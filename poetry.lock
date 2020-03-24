@@ -80,7 +80,7 @@ description = "Tools to manipulate font files"
 name = "fonttools"
 optional = false
 python-versions = ">=3.6"
-version = "4.5.0"
+version = "4.6.0"
 
 [[package]]
 category = "main"
@@ -263,7 +263,7 @@ python-versions = "*"
 version = "0.1.7"
 
 [metadata]
-content-hash = "15343774847ef9da20363361102e74bbe306113c16681bcf1027dd98e7c7f284"
+content-hash = "1708d0dc210bf696ed8de2a20fd073615c279ae54d6c6c63e7ef21b789b2ae2b"
 python-versions = "^3.7.4"
 
 [metadata.hashes]
@@ -275,7 +275,7 @@ css-html-js-minify = ["3da9d35ac0db8ca648c1b543e0e801d7ca0bab9e6bfd8418fee59d5ae
 entrypoints = ["589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19", "c70dd71abe5a8c85e55e12c19bd91ccfeec11a6e99044204511f9ed547d48451"]
 faker = ["202ad3b2ec16ae7c51c02904fb838831f8d2899e61bf18db1e91a5a582feab11", "92c84a10bec81217d9cb554ee12b3838c8986ce0b5d45f72f769da22e4bb5432"]
 flake8 = ["45681a117ecc81e870cbf1262835ae4af5e7a8b08e40b944a8a6e6b895914cfb", "49356e766643ad15072a789a20915d3c91dc89fd313ccd71802303fd67e4deca"]
-fonttools = ["193e6b767e24d5fe3728d9fc1a05113d278d9f7743a4bde5d9f2a29a9e91a763", "bba1f50899dccd234fb3fa6ddf9ea9c15fe1a5435dfde42cbec9fe2a9c4398af"]
+fonttools = ["18ebd83054995509584a542f70202f9fe8f0dacdb6eab3e132e96a067f9b09d7", "4c4d958787cd4ceef6914c70a550c38bd58d467ff1c268957fa3d9246dd000be"]
 idna = ["c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407", "ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"]
 logzero = ["34fa1e2e436dfa9f37e5ff8750e932bafe0c5abbb42e1f669e4cf5ce1f179142", "818072e4fcb53a3f6fb4114a92f920e1135fe6f47bffd9dc2b6c4d10eedacf27"]
 mccabe = ["ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42", "dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"]
