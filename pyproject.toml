@@ -19,7 +19,7 @@ css-html-js-minify = "^2.5"
 pydantic = "^1.5"
 
 [tool.poetry.dev-dependencies]
-yapf = "^0.29.0"
+yapf = "^0.30.0"
 mypy = "^0.770"
 flake8 = "^3.7"
 

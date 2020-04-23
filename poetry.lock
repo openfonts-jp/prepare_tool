@@ -281,7 +281,7 @@ description = "A formatter for Python code."
 name = "yapf"
 optional = false
 python-versions = "*"
-version = "0.29.0"
+version = "0.30.0"
 
 [[package]]
 category = "main"
@@ -292,7 +292,7 @@ python-versions = "*"
 version = "0.1.7"
 
 [metadata]
-content-hash = "300d94d371996c58410bf38b231652e36593eed486517b18367185ae43a646de"
+content-hash = "e106d467ca374cfa24f9ac66f945944cafa413849806c049a4db93c173fddc13"
 python-versions = "^3.7.4"
 
 [metadata.files]
@@ -492,8 +492,8 @@ urllib3 = [
     {file = "urllib3-1.25.6.tar.gz", hash = "sha256:9a107b99a5393caf59c7aa3c1249c16e6879447533d0887f4336dde834c7be86"},
 ]
 yapf = [
-    {file = "yapf-0.29.0-py2.py3-none-any.whl", hash = "sha256:cad8a272c6001b3401de3278238fdc54997b6c2e56baa751788915f879a52fca"},
-    {file = "yapf-0.29.0.tar.gz", hash = "sha256:712e23c468506bf12cadd10169f852572ecc61b266258422d45aaf4ad7ef43de"},
+    {file = "yapf-0.30.0-py2.py3-none-any.whl", hash = "sha256:3abf61ba67cf603069710d30acbc88cfe565d907e16ad81429ae90ce9651e0c9"},
+    {file = "yapf-0.30.0.tar.gz", hash = "sha256:3000abee4c28daebad55da6c85f3cd07b8062ce48e2e9943c8da1b9667d48427"},
 ]
 zopfli = [
     {file = "zopfli-0.1.7-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:9bb6e091da6ccf8bec9844df593daf3d3198a94cbeb8a97f6902c5e8e6891c28"},
