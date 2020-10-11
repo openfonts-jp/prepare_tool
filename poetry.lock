@@ -40,15 +40,14 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "faker"
-version = "3.0.0"
+version = "4.9.0"
 description = "Faker is a Python package that generates fake data for you."
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.5"
 
 [package.dependencies]
 python-dateutil = ">=2.4"
-six = ">=1.10"
 text-unidecode = "1.3"
 
 [[package]]
@@ -313,7 +312,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.4"
-content-hash = "94af1e54e3ab00aec7869fdc1013d35c4102897d5af169b422491fa5608aaf6f"
+content-hash = "95a153de4a8b04875a180489a6184e9d59f26aeb6048ccc3a54db0889e24b43e"
 
 [metadata.files]
 brotli = [
@@ -363,8 +362,8 @@ css-html-js-minify = [
     {file = "css_html_js_minify-2.5.5-py3.6.egg", hash = "sha256:4704e04a0cd6dd56d61bbfa3bfffc630da6b2284be33519be0b456672e2a2438"},
 ]
 faker = [
-    {file = "Faker-3.0.0-py2.py3-none-any.whl", hash = "sha256:202ad3b2ec16ae7c51c02904fb838831f8d2899e61bf18db1e91a5a582feab11"},
-    {file = "Faker-3.0.0.tar.gz", hash = "sha256:92c84a10bec81217d9cb554ee12b3838c8986ce0b5d45f72f769da22e4bb5432"},
+    {file = "Faker-4.9.0-py3-none-any.whl", hash = "sha256:934660336924f4453733baebc74ad9c9b237155a17781990808c00801e63d557"},
+    {file = "Faker-4.9.0.tar.gz", hash = "sha256:5ca203eb9adaf6a9d1517a4d4a35a4d587f373639ed31da82b0f2e31abc2397a"},
 ]
 flake8 = [
     {file = "flake8-3.8.4-py2.py3-none-any.whl", hash = "sha256:749dbbd6bfd0cf1318af27bf97a14e28e5ff548ef8e5b1566ccfb25a11e7c839"},
