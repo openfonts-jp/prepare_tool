@@ -1,4 +1,4 @@
-FROM python:3.8.1-alpine3.10 AS build
+FROM python:3.8.3-alpine3.10 AS build
 
 WORKDIR /tmp
 RUN apk add --no-cache gcc libressl-dev musl-dev libffi-dev && \
@@ -7,7 +7,7 @@ COPY pyproject.toml poetry.lock ./
 COPY ./prepare_tool ./prepare_tool
 RUN poetry build
 
-FROM python:3.8.1-alpine3.10
+FROM python:3.8.3-alpine3.10
 
 WORKDIR /tmp
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing/ >> /etc/apk/repositories && \
