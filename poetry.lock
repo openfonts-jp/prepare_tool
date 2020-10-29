@@ -110,7 +110,7 @@ testing = ["packaging", "importlib-resources"]
 
 [[package]]
 name = "logzero"
-version = "1.5.0"
+version = "1.6.2"
 description = "Robust and effective logging for Python 2 and 3"
 category = "main"
 optional = false
@@ -312,7 +312,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.4"
-content-hash = "a6fed2cf536d8633bea16fd4e37eb51a1b76d479f143f0f80a2fb9c25a45ed4e"
+content-hash = "3607c7b3733f0898d22e8b107d2cccb9e2a5f2919de58ae3949e76599ea8e794"
 
 [metadata.files]
 brotli = [
@@ -385,8 +385,8 @@ importlib-metadata = [
     {file = "importlib_metadata-1.6.0.tar.gz", hash = "sha256:34513a8a0c4962bc66d35b359558fd8a5e10cd472d37aec5f66858addef32c1e"},
 ]
 logzero = [
-    {file = "logzero-1.5.0-py2.py3-none-any.whl", hash = "sha256:818072e4fcb53a3f6fb4114a92f920e1135fe6f47bffd9dc2b6c4d10eedacf27"},
-    {file = "logzero-1.5.0.tar.gz", hash = "sha256:34fa1e2e436dfa9f37e5ff8750e932bafe0c5abbb42e1f669e4cf5ce1f179142"},
+    {file = "logzero-1.6.2-py2.py3-none-any.whl", hash = "sha256:98621ae85280633a7f6ccc4f81278e9596c9b38666d76b1637dfb5d64894e4ed"},
+    {file = "logzero-1.6.2.tar.gz", hash = "sha256:7d1234dbdef8126b6ace4d15cf8a60418506355b2ad967e117d907026cf4f2b5"},
 ]
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
