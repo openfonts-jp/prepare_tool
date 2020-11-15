@@ -110,7 +110,7 @@ testing = ["packaging", "importlib-resources"]
 
 [[package]]
 name = "logzero"
-version = "1.6.2"
+version = "1.6.3"
 description = "Robust and effective logging for Python 2 and 3"
 category = "main"
 optional = false
@@ -385,8 +385,8 @@ importlib-metadata = [
     {file = "importlib_metadata-1.6.0.tar.gz", hash = "sha256:34513a8a0c4962bc66d35b359558fd8a5e10cd472d37aec5f66858addef32c1e"},
 ]
 logzero = [
-    {file = "logzero-1.6.2-py2.py3-none-any.whl", hash = "sha256:98621ae85280633a7f6ccc4f81278e9596c9b38666d76b1637dfb5d64894e4ed"},
-    {file = "logzero-1.6.2.tar.gz", hash = "sha256:7d1234dbdef8126b6ace4d15cf8a60418506355b2ad967e117d907026cf4f2b5"},
+    {file = "logzero-1.6.3-py2.py3-none-any.whl", hash = "sha256:1b84ee4c8fdabf7023877ff17cb456d82564097704eb6c4ee37952bd8ce0800f"},
+    {file = "logzero-1.6.3.tar.gz", hash = "sha256:1435284574e409b8ec8b680f276bca04cab41f93d6eff4dc8348b7630cddf560"},
 ]
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
