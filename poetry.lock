@@ -66,7 +66,7 @@ pyflakes = ">=2.2.0,<2.3.0"
 
 [[package]]
 name = "fonttools"
-version = "4.17.0"
+version = "4.17.1"
 description = "Tools to manipulate font files"
 category = "main"
 optional = false
@@ -373,8 +373,8 @@ flake8 = [
     {file = "flake8-3.8.4.tar.gz", hash = "sha256:aadae8761ec651813c24be05c6f7b4680857ef6afaae4651a4eccaef97ce6c3b"},
 ]
 fonttools = [
-    {file = "fonttools-4.17.0-py3-none-any.whl", hash = "sha256:dd612abe9a92769e1bd7a8b22bdb12f161c8892f97cf5b9cc1ca64786fbf39ef"},
-    {file = "fonttools-4.17.0.zip", hash = "sha256:5773ceed7e4a18b26c03888b148066afb13ad830e5afd3509d3c282f01dcda4c"},
+    {file = "fonttools-4.17.1-py3-none-any.whl", hash = "sha256:b3f8132c13fa51c7d1a2b3006e2885d91f12674dd2d463f5357a97babdf37574"},
+    {file = "fonttools-4.17.1.zip", hash = "sha256:7097b194babc05c8decfff6cbc81b184221fdcfbda568630fe441c63dadb3ab4"},
 ]
 idna = [
     {file = "idna-2.8-py2.py3-none-any.whl", hash = "sha256:ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"},
