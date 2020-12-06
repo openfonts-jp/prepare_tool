@@ -66,14 +66,14 @@ pyflakes = ">=2.2.0,<2.3.0"
 
 [[package]]
 name = "fonttools"
-version = "4.17.1"
+version = "4.18.0"
 description = "Tools to manipulate font files"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-all = ["fs (>=2.2.0,<3)", "lxml (>=4.0,<5)", "zopfli (>=0.1.4)", "lz4 (>=1.7.4.2)", "matplotlib", "sympy", "skia-pathops (>=0.5.0)", "brotli (>=1.0.1)", "scipy", "brotlipy (>=0.7.0)", "munkres", "unicodedata2 (>=13.0.0)", "xattr"]
+all = ["fs (>=2.2.0,<3)", "lxml (>=4.0,<5)", "zopfli (>=0.1.4)", "lz4 (>=1.7.4.2)", "matplotlib", "sympy", "skia-pathops (>=0.5.0)", "brotlicffi (>=0.8.0)", "scipy", "brotli (>=1.0.1)", "munkres", "unicodedata2 (>=13.0.0)", "xattr"]
 graphite = ["lz4 (>=1.7.4.2)"]
 interpolatable = ["scipy", "munkres"]
 lxml = ["lxml (>=4.0,<5)"]
@@ -83,7 +83,7 @@ symfont = ["sympy"]
 type1 = ["xattr"]
 ufo = ["fs (>=2.2.0,<3)"]
 unicode = ["unicodedata2 (>=13.0.0)"]
-woff = ["zopfli (>=0.1.4)", "brotli (>=1.0.1)", "brotlipy (>=0.7.0)"]
+woff = ["zopfli (>=0.1.4)", "brotlicffi (>=0.8.0)", "brotli (>=1.0.1)"]
 
 [[package]]
 name = "idna"
@@ -312,7 +312,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.4"
-content-hash = "36946cace5b8062dba227c39303092935e73fc5953c72f8a71ad85a09bcf30fc"
+content-hash = "43a86fb16f91f7b3d036ccea64fcc0d26a83ba84b9a1029a351efcceda2335cd"
 
 [metadata.files]
 brotli = [
@@ -373,8 +373,8 @@ flake8 = [
     {file = "flake8-3.8.4.tar.gz", hash = "sha256:aadae8761ec651813c24be05c6f7b4680857ef6afaae4651a4eccaef97ce6c3b"},
 ]
 fonttools = [
-    {file = "fonttools-4.17.1-py3-none-any.whl", hash = "sha256:b3f8132c13fa51c7d1a2b3006e2885d91f12674dd2d463f5357a97babdf37574"},
-    {file = "fonttools-4.17.1.zip", hash = "sha256:7097b194babc05c8decfff6cbc81b184221fdcfbda568630fe441c63dadb3ab4"},
+    {file = "fonttools-4.18.0-py3-none-any.whl", hash = "sha256:8366a45a919e8dc2119c2f9391aff860ca1c2da21d5205a632ac3774aa928334"},
+    {file = "fonttools-4.18.0.zip", hash = "sha256:4e5b8bdf31f7c00248b42599eef761e57f2cf82884f83e992af972b84bac968b"},
 ]
 idna = [
     {file = "idna-2.8-py2.py3-none-any.whl", hash = "sha256:ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"},
