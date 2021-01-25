@@ -66,7 +66,7 @@ pyflakes = ">=2.2.0,<2.3.0"
 
 [[package]]
 name = "fonttools"
-version = "4.18.2"
+version = "4.19.0"
 description = "Tools to manipulate font files"
 category = "main"
 optional = false
@@ -312,7 +312,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.4"
-content-hash = "c85a98bdb668033f516fdca6c8076865d7c2ce92bdef1ed6c89accfb93db5377"
+content-hash = "257e0f7657ae0c42912a2fc8ae0eb74b2579071411739644f427efd02c3ea1f7"
 
 [metadata.files]
 brotli = [
@@ -375,8 +375,8 @@ flake8 = [
     {file = "flake8-3.8.4.tar.gz", hash = "sha256:aadae8761ec651813c24be05c6f7b4680857ef6afaae4651a4eccaef97ce6c3b"},
 ]
 fonttools = [
-    {file = "fonttools-4.18.2-py3-none-any.whl", hash = "sha256:645f22e8abd6e2c85d167df98333f5d2f33f9853e59210c93e2dd1574a44e6cf"},
-    {file = "fonttools-4.18.2.zip", hash = "sha256:5c50af6fb9b4de4609c0e5558f3444c20f8632aa319319a7ef14fd5ba677c9f8"},
+    {file = "fonttools-4.19.0-py3-none-any.whl", hash = "sha256:e583205a9e8c9744e2b99fca19f0875c57aea665f3c0c141bd8db2b38d84875f"},
+    {file = "fonttools-4.19.0.zip", hash = "sha256:53d9944beb1a6cb3c46dd30eca9a110c610133f22d2f22e9c0f06dd20b73d6f3"},
 ]
 idna = [
     {file = "idna-2.8-py2.py3-none-any.whl", hash = "sha256:ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"},
