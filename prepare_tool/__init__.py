@@ -22,6 +22,7 @@ def cli():
     generate_command_parser = subparsers.add_parser('generate', help='Generate webfonts.')
     generate_command_parser.add_argument('json_path', metavar='json_file', type=Path, help='JSON file')
     generate_command_parser.add_argument('--output-dir', dest='output_dir', type=Path, required=True)
+    generate_command_parser.add_argument('--no-validation', dest='generate_archive', action='store_false')
     generate_command_parser.add_argument('--no-generate-archive', dest='generate_archive', action='store_false')
     generate_command_parser.add_argument('--no-generate-webfonts', dest='generate_webfonts', action='store_false')
     generate_command_parser.add_argument('--no-generate-css', dest='generate_css', action='store_false')
@@ -37,7 +38,8 @@ def print_schema():
 def generate(json_path: Path, output_dir: Path, **options):
     with Core(json_path, output_dir) as prepare_tool:
         Downloader(prepare_tool).download()
-        Validator(prepare_tool).validate()
+        if options['validation'] is True:
+            Validator(prepare_tool).validate()
 
         if options['generate_archive'] is True:
             ArchiveGenerator(prepare_tool).generate()

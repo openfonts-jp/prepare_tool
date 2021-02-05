@@ -1,8 +1,12 @@
+import subprocess
 import yaml
 from typing import List
+from pathlib import Path
+from tempfile import mkstemp
 from xml.etree.ElementTree import Element, tostring as to_xml_string
 from faker import Faker
 from fontTools.subset import Options, Subsetter, load_font, save_font, parse_unicodes
+from fontTools.ttLib import TTFont
 from fontTools.ttLib.sfnt import WOFFFlavorData
 from fontTools.ttLib.woff2 import WOFF2FlavorData
 
@@ -33,9 +37,13 @@ class WebFontGenerator():
         output_dir.mkdir(parents=True, exist_ok=True)
         metadata = self.__generateMetadata()
 
+        Faker.seed(package.id)
         fake = Faker()
-        fake.seed(package.id)
         subset_fontname: str = fake.name()
+
+        tmp_otf_font_path = None
+        if not font_path.name.endswith('.otf'):
+            tmp_otf_font_path = self.__generateOpenTypeFont(font)
 
         options = Options()
         options.font_number = font.number
@@ -55,7 +63,7 @@ class WebFontGenerator():
                 for line in unicode_read_io.readlines():
                     unicodes.extend(parse_unicodes(line.split('#')[0]))
 
-            with load_font(font_path, options) as ttfont:
+            with load_font(tmp_otf_font_path, options) as ttfont:
                 subsetter = Subsetter(options=options)
                 subsetter.populate(unicodes=unicodes)
                 subsetter.subset(ttfont)
@@ -115,3 +123,49 @@ class WebFontGenerator():
                 child_el = self.__generateXMLElement(child_props, child_tagname)
                 el.append(child_el)
         return el
+
+    def __generateOpenTypeFont(self, font: Font) -> Path:
+        font_path = self.__core.findFontfilePath(font)
+        number = font.number
+        if number is None:
+            number = 0
+
+        tmp_file = Path(mkstemp(suffix='.otf')[1])
+        subprocess.run(
+            [
+                'fontforge',
+                '-lang=ff',
+                '-c',
+                'Open($1);Generate($2);',
+                f"{font_path}({number})",
+                tmp_file,
+            ],
+            check=True,
+        )
+
+        # Fix vmtx (fontforge calcs wrong vmtx tbs)
+        with TTFont(font_path, fontNumber=number) as ttf_font, TTFont(tmp_file) as otf_font:
+            self.__copyVMTXTable(source=ttf_font, target=otf_font).save(tmp_file)
+
+        return tmp_file
+
+    def __copyVMTXTable(self, source: TTFont, target: TTFont) -> TTFont:
+        if not ('vmtx' in source and 'vmtx' in target):
+            return target
+
+        target_reversed_cmap = target['cmap'].buildReversed()
+        source_cmap = source['cmap'].getBestCmap()
+
+        for target_glyph_name in target['vmtx'].metrics.keys():
+            source_glyph_name = None
+
+            if target_glyph_name in target_reversed_cmap:
+                cid = target_reversed_cmap[target_glyph_name].pop()
+                source_glyph_name = source_cmap[cid]
+            else:
+                gid = target.getGlyphID(target_glyph_name)
+                source_glyph_name = source.getGlyphName(gid)
+
+            target['vmtx'].metrics[target_glyph_name] = source['vmtx'].metrics[source_glyph_name]
+
+        return target

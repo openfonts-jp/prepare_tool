@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.openfonts.jp/package/v0.1.0/schema.json",
+  "id": "kinto",
+  "name": "Kinto",
+  "version": "1.0.1",
+  "category": "Gothic",
+  "characters": ["Alphabet", "Hiragana", "Katakana", "Kanji"],
+  "authors": ["The Kinto Project Authors"],
+  "license": "OFL-1.1",
+  "copyrights": [
+    "Copyright © 2019 The Kinto Project Authors at ookami Inc.",
+    "Copyright © 2014-2019 The Noto Project Authors (github.com/googlei18n/noto-fonts). Noto is a trademark of Google Inc.",
+    "Copyright © 2014-2019 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name 'Source'. Source is a trademark of Adobe in the United States and/or other countries."
+  ],
+  "features": {
+    "vert": false
+  },
+  "homepage": "https://github.com/ookamiinc/kinto",
+  "sources": [
+    {
+      "url": "https://okoneya.jp/font/GenEiMGothic_v1.0.zip",
+      "fonts": {
+        "normal": {
+          "sha256": "53d50d04e09b311ae9f1ff9bb092cd89b8a5cbbffe37ceb2e946077ec4fb5f96",
+          "filename": "GenEiMGothic-Regular.ttf"
+        },
+        "medium": {
+          "sha256": "e466b2190947df81115353db7f81bc798b36c7cad0e89514f18b1d4bb1d1136e",
+          "filename": "GenEiMGothic-Medium.ttf"
+        },
+        "semiBold": {
+          "sha256": "8b8dd5751c2a09c4b64fbb55d601308e9170d6921400e856579ae54a9e618cd8",
+          "filename": "GenEiMGothic-Bold.ttf"
+        },
+        "bold": {
+          "sha256": "cd8a6f7d163d83fb67c9c445b210b05e1fe99d290389cc6a2e348a39f748661a",
+          "filename": "GenEiMGothic-Heavy.ttf"
+        },
+        "extraBold": {
+          "sha256": "c1f08669cb141c5769a90ce12712849f122241551836cf8a74e83d44c1c84346",
+          "filename": "GenEiMGothic-Black.ttf"
+        }
+      }
+    }
+  ]
+}

@@ -7,14 +7,14 @@ COPY pyproject.toml poetry.lock ./
 COPY ./prepare_tool ./prepare_tool
 RUN poetry build
 
-FROM python:3.8.3-alpine3.10
+FROM alpine:edge
 
 WORKDIR /tmp
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing/ >> /etc/apk/repositories && \
-  apk add --no-cache gcc libressl-dev musl-dev libffi-dev libc-dev g++ bash git && \
-  python -m pip install -U pip
+  apk add --no-cache gcc libressl-dev musl-dev libffi-dev libc-dev g++ bash git python3 fontforge
+RUN apk add --no-cache python3-dev && wget https://bootstrap.pypa.io/get-pip.py -O get-pip.py && python3 get-pip.py && rm get-pip.py
 COPY --from=build /tmp/dist/prepare_tool-0.0.1-py3-none-any.whl /tmp/prepare_tool-0.0.1-py3-none-any.whl
-RUN pip install /tmp/prepare_tool-0.0.1-py3-none-any.whl
+RUN python3 -m pip install /tmp/prepare_tool-0.0.1-py3-none-any.whl
 WORKDIR /workdir
 LABEL io.whalebrew.name prepare_tool
 ENTRYPOINT ["prepare_tool"]

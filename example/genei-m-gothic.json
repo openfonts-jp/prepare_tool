@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.openfonts.jp/package/v0.1.0/schema.json",
+  "id": "genei-m-gothic",
+  "name": "源暎エムゴ",
+  "version": "2.0",
+  "category": "Gothic",
+  "characters": ["Alphabet", "Hiragana", "Katakana", "Kanji"],
+  "authors": ["おたもん"],
+  "license": "OFL-1.1",
+  "copyrights": [
+    "Copyright (c) 2020, おたもん (http://okoneya.jp/font/), with Reserved Font Name '源暎'.",
+    "Copyright (c) 2017, M+ FONTS PROJECT.",
+    "Copyright (c) 2014, Indian Type Foundry (info@indiantypefoundry.com).",
+    "Copyright (c) 2017, Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name 'Source'.",
+    "Copyright (c) 2015, Google Inc."
+  ],
+  "features": {
+    "vert": false
+  },
+  "homepage": "https://okoneya.jp/font/genei-m-gothic.html",
+  "sources": [
+    {
+      "url": "https://okoneya.jp/font/GenEiMGothic_v2.0.zip",
+      "fonts": {
+        "normal": {
+          "sha256": "478d03717e50be970e8b688d791fe2d401f5f74a199a59ef71f3b489e948807d",
+          "filename": "GenEiMGothic2-Regular.ttf"
+        },
+        "medium": {
+          "sha256": "217a2ef1234499be153541a5d48db189cb3a55716747fb4ec3da5a5a7bae92f4",
+          "filename": "GenEiMGothic2-Medium.ttf"
+        },
+        "semiBold": {
+          "sha256": "0c5dd67f7d6533f4c65c57981f32885be6317e7fca0ece27959f1afd3c39c876",
+          "filename": "GenEiMGothic2-Bold.ttf"
+        },
+        "bold": {
+          "sha256": "0e0eb78a2d606eb6261f8cba39eaa3214abb015540c6f41ca0dde23eadd6424c",
+          "filename": "GenEiMGothic2-Heavy.ttf"
+        },
+        "extraBold": {
+          "sha256": "f21a86da949467904051a63d1b8a75e78a92cf4cc5d8a49e4a8afc2309b3b524",
+          "filename": "GenEiMGothic2-Black.ttf"
+        }
+      }
+    }
+  ]
+}
