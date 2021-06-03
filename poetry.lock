@@ -40,11 +40,11 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "faker"
-version = "4.18.0"
+version = "8.5.1"
 description = "Faker is a Python package that generates fake data for you."
 category = "main"
 optional = false
-python-versions = ">=3.5"
+python-versions = ">=3.6"
 
 [package.dependencies]
 python-dateutil = ">=2.4"
@@ -312,7 +312,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.4"
-content-hash = "257e0f7657ae0c42912a2fc8ae0eb74b2579071411739644f427efd02c3ea1f7"
+content-hash = "c999e6e25463d382f27c9b49be9044ae464d5fb095147d5795034bcc10697965"
 
 [metadata.files]
 brotli = [
@@ -367,8 +367,8 @@ css-html-js-minify = [
     {file = "css_html_js_minify-2.5.5-py3.6.egg", hash = "sha256:4704e04a0cd6dd56d61bbfa3bfffc630da6b2284be33519be0b456672e2a2438"},
 ]
 faker = [
-    {file = "Faker-4.18.0-py3-none-any.whl", hash = "sha256:2ba20a4438429cb08d729175d7bb0435ef3c2c4cedc7b1ceb703ee6da8dad906"},
-    {file = "Faker-4.18.0.tar.gz", hash = "sha256:6279746aed175a693108238e6d1ab8d7e26d0ec7ff8474f61025b9fdaae15d65"},
+    {file = "Faker-8.5.1-py3-none-any.whl", hash = "sha256:6c790ef9e6619933e2907ad36ae4d1c32254ec717b077d0e90e69b2760751e0d"},
+    {file = "Faker-8.5.1.tar.gz", hash = "sha256:7ef2de62e276c884ea8b273be2719ce4f6c9e6a99115f275d9fe3997c263f73c"},
 ]
 flake8 = [
     {file = "flake8-3.8.4-py2.py3-none-any.whl", hash = "sha256:749dbbd6bfd0cf1318af27bf97a14e28e5ff548ef8e5b1566ccfb25a11e7c839"},
@@ -468,18 +468,26 @@ pyyaml = [
     {file = "PyYAML-5.4.1-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:bb4191dfc9306777bc594117aee052446b3fa88737cd13b7188d0e7aa8162185"},
     {file = "PyYAML-5.4.1-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:6c78645d400265a062508ae399b60b8c167bf003db364ecb26dcab2bda048253"},
     {file = "PyYAML-5.4.1-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:4e0583d24c881e14342eaf4ec5fbc97f934b999a6828693a99157fde912540cc"},
+    {file = "PyYAML-5.4.1-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:72a01f726a9c7851ca9bfad6fd09ca4e090a023c00945ea05ba1638c09dc3347"},
+    {file = "PyYAML-5.4.1-cp36-cp36m-manylinux2014_s390x.whl", hash = "sha256:895f61ef02e8fed38159bb70f7e100e00f471eae2bc838cd0f4ebb21e28f8541"},
     {file = "PyYAML-5.4.1-cp36-cp36m-win32.whl", hash = "sha256:3bd0e463264cf257d1ffd2e40223b197271046d09dadf73a0fe82b9c1fc385a5"},
     {file = "PyYAML-5.4.1-cp36-cp36m-win_amd64.whl", hash = "sha256:e4fac90784481d221a8e4b1162afa7c47ed953be40d31ab4629ae917510051df"},
     {file = "PyYAML-5.4.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:5accb17103e43963b80e6f837831f38d314a0495500067cb25afab2e8d7a4018"},
     {file = "PyYAML-5.4.1-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:e1d4970ea66be07ae37a3c2e48b5ec63f7ba6804bdddfdbd3cfd954d25a82e63"},
+    {file = "PyYAML-5.4.1-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:cb333c16912324fd5f769fff6bc5de372e9e7a202247b48870bc251ed40239aa"},
+    {file = "PyYAML-5.4.1-cp37-cp37m-manylinux2014_s390x.whl", hash = "sha256:fe69978f3f768926cfa37b867e3843918e012cf83f680806599ddce33c2c68b0"},
     {file = "PyYAML-5.4.1-cp37-cp37m-win32.whl", hash = "sha256:dd5de0646207f053eb0d6c74ae45ba98c3395a571a2891858e87df7c9b9bd51b"},
     {file = "PyYAML-5.4.1-cp37-cp37m-win_amd64.whl", hash = "sha256:08682f6b72c722394747bddaf0aa62277e02557c0fd1c42cb853016a38f8dedf"},
     {file = "PyYAML-5.4.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:d2d9808ea7b4af864f35ea216be506ecec180628aced0704e34aca0b040ffe46"},
     {file = "PyYAML-5.4.1-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:8c1be557ee92a20f184922c7b6424e8ab6691788e6d86137c5d93c1a6ec1b8fb"},
+    {file = "PyYAML-5.4.1-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:fd7f6999a8070df521b6384004ef42833b9bd62cfee11a09bda1079b4b704247"},
+    {file = "PyYAML-5.4.1-cp38-cp38-manylinux2014_s390x.whl", hash = "sha256:bfb51918d4ff3d77c1c856a9699f8492c612cde32fd3bcd344af9be34999bfdc"},
     {file = "PyYAML-5.4.1-cp38-cp38-win32.whl", hash = "sha256:fa5ae20527d8e831e8230cbffd9f8fe952815b2b7dae6ffec25318803a7528fc"},
     {file = "PyYAML-5.4.1-cp38-cp38-win_amd64.whl", hash = "sha256:0f5f5786c0e09baddcd8b4b45f20a7b5d61a7e7e99846e3c799b05c7c53fa696"},
     {file = "PyYAML-5.4.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:294db365efa064d00b8d1ef65d8ea2c3426ac366c0c4368d930bf1c5fb497f77"},
     {file = "PyYAML-5.4.1-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:74c1485f7707cf707a7aef42ef6322b8f97921bd89be2ab6317fd782c2d53183"},
+    {file = "PyYAML-5.4.1-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:d483ad4e639292c90170eb6f7783ad19490e7a8defb3e46f97dfe4bacae89122"},
+    {file = "PyYAML-5.4.1-cp39-cp39-manylinux2014_s390x.whl", hash = "sha256:fdc842473cd33f45ff6bce46aea678a54e3d21f1b61a7750ce3c498eedfe25d6"},
     {file = "PyYAML-5.4.1-cp39-cp39-win32.whl", hash = "sha256:49d4cdd9065b9b6e206d0595fee27a96b5dd22618e7520c33204a4a3239d5b10"},
     {file = "PyYAML-5.4.1-cp39-cp39-win_amd64.whl", hash = "sha256:c20cfa2d49991c8b4147af39859b167664f2ad4561704ee74c1de03318e898db"},
     {file = "PyYAML-5.4.1.tar.gz", hash = "sha256:607774cbba28732bfa802b54baa7484215f530991055bb562efbed5b2f20a45e"},
@@ -542,6 +550,7 @@ zipp = [
 ]
 zopfli = [
     {file = "zopfli-0.1.7-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:9bb6e091da6ccf8bec9844df593daf3d3198a94cbeb8a97f6902c5e8e6891c28"},
+    {file = "zopfli-0.1.7-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:c499276576059137aab3d34f023e870438f78b128caa1a1330bc2b61522e30c6"},
     {file = "zopfli-0.1.7-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:bb886265ff36a4ee0136a1ba8ecdbc5736f9b4155e8b379afa0574042dab730b"},
     {file = "zopfli-0.1.7-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:c9b57dd98505deb5e2a4218627b94cf23518c5fb7029936e905a1bbad42ebe82"},
     {file = "zopfli-0.1.7-cp27-cp27m-win32.whl", hash = "sha256:a5cbefe59ffc0e4a4be80a8a45e12d91dd7be7fe4bb6c1e31e3dd3cc187eacc9"},
@@ -554,11 +563,13 @@ zopfli = [
     {file = "zopfli-0.1.7-cp35-cp35m-win32.whl", hash = "sha256:0512baec1856fe6b2ea910fc0713e0c0415ec55f6a22af0e1a3c807e2df78f9f"},
     {file = "zopfli-0.1.7-cp35-cp35m-win_amd64.whl", hash = "sha256:5f8eece4acf2377dc7803688bdea11017fb6414b5e4b129ab80692a4a3f4b248"},
     {file = "zopfli-0.1.7-cp36-cp36m-macosx_10_6_intel.whl", hash = "sha256:6be5101946c334b71c60d631f0725c5c7105f3cbbf359d108376660304e1d1bb"},
+    {file = "zopfli-0.1.7-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:943cb96e8f37a3c3c66a111b4262913d20e07542ff2eaad06012d7193f74d169"},
     {file = "zopfli-0.1.7-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:578a3e38a0256dc3e0fb887d58203c1e26c387b77c0f3df2e011186737230534"},
     {file = "zopfli-0.1.7-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:5fd88046bcdd2b01e27e0525ac699d297e75a5fbdc89fd9d4ac7a3b91e5eb054"},
     {file = "zopfli-0.1.7-cp36-cp36m-win32.whl", hash = "sha256:f39b961186b18faa1155977706bfbfcf1644c47e5b7648de8e0645c53062ed90"},
     {file = "zopfli-0.1.7-cp36-cp36m-win_amd64.whl", hash = "sha256:0504cd271f6e32b4b512615bd4ae1fabc787c72a90495376004f4023dcac0f3a"},
     {file = "zopfli-0.1.7-cp37-cp37m-macosx_10_6_intel.whl", hash = "sha256:4837b1a8a1e7d04879d5cdd7742d9312d52466f10f1571d9beec6ecdcc329b97"},
+    {file = "zopfli-0.1.7-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:5647935cfbb68acb4676a2512d2f790e76e9a3cb0473a0d0fd43320ea49bf6ea"},
     {file = "zopfli-0.1.7-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:8fb3e8fd5ef947c28721c7008be44f5db8777deec77a72601f895bf6a70aa172"},
     {file = "zopfli-0.1.7-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:697a809fd66d5de8098e6e6bebfcc5a8c8ab5278272f70e9b78bc72334ec12ec"},
     {file = "zopfli-0.1.7-cp37-cp37m-win32.whl", hash = "sha256:1dfdfbbfe9a980e3ae2d9150bb8429a026b8254c2c63c295046192d14dd971ae"},
@@ -568,5 +579,8 @@ zopfli = [
     {file = "zopfli-0.1.7-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:6801f879e0c717e9cfb6b405f2b8cce1d20d3d034b9e2a6900e92994161f81f8"},
     {file = "zopfli-0.1.7-cp38-cp38-win32.whl", hash = "sha256:0df32baa7b1b8c5ea547c455854d5ae8a8e45c10cad25ff5451f62e5cce48b60"},
     {file = "zopfli-0.1.7-cp38-cp38-win_amd64.whl", hash = "sha256:c2d9dd6e4e6f9b35cceb7dde17b9ae153c194e16a105c6ba93c272f2a0fef3ec"},
+    {file = "zopfli-0.1.7-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:8abb75a02928349bd2701cfdff6f7825e81df038788ba2dff161de6185005194"},
+    {file = "zopfli-0.1.7-cp39-cp39-manylinux1_i686.whl", hash = "sha256:f6bf003796efb877cc25d14568af41900e883152ee53d9af8363b454b89f2129"},
+    {file = "zopfli-0.1.7-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:2b750c5860cba1076c1cad163f2a9d48952a3e9ac20182132af4ce3bcb9b5658"},
     {file = "zopfli-0.1.7.zip", hash = "sha256:512892714f0e3dcc9a77222cb509ed519f41ce2b92467e47a4b406a23b48561a"},
 ]
